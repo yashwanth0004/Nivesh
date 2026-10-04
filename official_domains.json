@@ -1,0 +1,24 @@
+{
+  "INA000017523": {
+    "entity": "1 Finance Private Limited",
+    "domains": ["1finance.co.in"],
+    "registered_email": "compliance@1finance.co.in",
+    "verified_on": "2026-10-03",
+    "sources": [
+      "https://sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=13&regno=INA000017523",
+      "https://1finance.co.in/legal-and-regulatory"
+    ]
+  },
+  "INH000000297": {
+    "entity": "AXIS SECURITIES LIMITED",
+    "category": "Research Analyst",
+    "aliases": ["AXIS SECURITIES LIMITED", "AXIS SECURITIES", "AXIS DIRECT", "RAJIV KEJRIWAL"],
+    "domains": ["axisdirect.in"],
+    "registered_email": "compliance.officer@axisdirect.in",
+    "verified_on": "2026-10-03",
+    "sources": [
+      "https://www.axisdirect.in/disclaimer",
+      "https://simplehai.axisdirect.in/terms-and-conditions-ai"
+    ]
+  }
+}

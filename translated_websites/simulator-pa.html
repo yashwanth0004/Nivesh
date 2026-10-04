@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pa">
+<head><base href="../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ਨਿਵੇਸ਼ ਸਿਮੂਲੇਟਰ ਨਿਵੇਸ਼ ਸੁਰੱਖਿਆ ਟੂਲ</title>
+    <link rel="stylesheet" href="simulator.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+
+<!-- Safety Disclaimer Banner -->
+<div id="disclaimer-banner">
+    🛡️ <strong>ਸਿਰਫ਼ ਸਿੱਖਿਆ ਸੰਦ</strong> &nbsp;|&nbsp;
+    ਕੋਈ ਅਸਲ ਪੈਸਾ ਸ਼ਾਮਲ ਨਹੀਂ &nbsp;|&nbsp; ਕੋਈ ਵਿੱਤੀ ਸਲਾਹ ਨਹੀਂ &nbsp;|&nbsp; ਨਾ ਦਲਾਲ
+</div>
+
+<div id="simulator-container">
+    <header id="step-header">
+        <div class="header-left">
+            <h1>ਨਿਵੇਸ਼ ਸਿਮੂਲੇਟਰ</h1>
+            <span class="header-sub">ਨਿਵੇਸ਼ ਨਤੀਜਾ ਸਿਮੂਲੇਟਰ</span>
+        </div>
+        <div class="header-right">
+            <button id="btn-lang" class="btn-lang">ਹਿੰਦੀ</button>
+            <button id="btn-tutorial" class="btn-info">ਸ਼ੁਰੂ ਟਿਊਟੋਰਿਅਲ</button>
+        </div>
+    </header>
+
+    <!-- Scenario Selector -->
+    <div class="section-box" id="step-scenario">
+        <h3 class="section-title">ਬਾਜ਼ਾਰ ਦਾ ਦ੍ਰਿਸ਼ ਚੁਣੋ <span class="hi">ਬਾਜ਼ਾਰ ਦੀ ਚੰਗੀ ਕਿਸਮਤ</span></h3>
+        <div class="scenario-cards">
+            <div class="scenario-card active" data-scenario="normal">
+                <div class="sc-icon">🟢</div>
+                <div class="sc-name">ਆਮ ਬਾਜ਼ਾਰ</div>
+                <div class="sc-name-hi">ਸਮੱਸਿਆ ਬਾਜ਼ਾਰ</div>
+                <div class="sc-risk low">ਘੱਟ ਜੋਖਮ</div>
+            </div>
+            <div class="scenario-card" data-scenario="crash">
+                <div class="sc-icon">📉</div>
+                <div class="sc-name">ਬਾਜ਼ਾਰ ਦੀ ਤਬਾਹੀ</div>
+                <div class="sc-name-hi">ਬਾਜ਼ਾਰ ਦੁਰਘਟਨਾ</div>
+                <div class="sc-risk high">ਉੱਚ ਜੋਖਮ</div>
+            </div>
+            <div class="scenario-card" data-scenario="highvol">
+                <div class="sc-icon">⚡</div>
+                <div class="sc-name">ਉੱਚ ਅਸਥਿਰਤਾ</div>
+                <div class="sc-name-hi">ਉੱਚ - ਉਚ ਉੱਚ ਉੱਚ</div>
+                <div class="sc-risk high">ਉੱਚ ਜੋਖਮ</div>
+            </div>
+            <div class="scenario-card" data-scenario="fraud">
+                <div class="sc-icon">🚨</div>
+                <div class="sc-name">ਧੋਖਾਧਡ਼ੀ / ਘੁਟਾਲਾ</div>
+                <div class="sc-name-hi">ਢੱਕਡ਼ੀ</div>
+                <div class="sc-risk extreme">ਬਹੁਤ</div>
+            </div>
+            <div class="scenario-card" data-scenario="leverage">
+                <div class="sc-icon">⚠️</div>
+                <div class="sc-name">ਲਾਭ ( 2 )</div>
+                <div class="sc-name-hi">ਉੱਤਰ ਸੇ ਨਿਵਾਸ</div>
+                <div class="sc-risk high">ਉੱਚ ਜੋਖਮ</div>
+            </div>
+        </div>
+        <div id="scenario-desc" class="scenario-desc"></div>
+    </div>
+
+    <!-- Mode -->
+    <div class="mode-selector" id="step-mode">
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="single"> ਸਿੰਗਲ ਰਣਨੀਤੀ<span class="hi">ਇੱਕ ਰੰ</span>
+        </label>
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="compare" checked> ਦੋ ਰਣਨੀਤੀਆਂ ਦੀ ਤੁਲਨਾ ਕਰੋ<span class="hi">ਦੋ ਰੰਨਿਆ ਤੂੰਨਾ</span>
+        </label>
+    </div>
+
+    <!-- Global Settings -->
+    <div class="global-settings section-box" id="step-global">
+        <div class="input-group">
+            <label>ਪੂੰਜੀ <span class="hi">( ਕੁਲ ਪੰਜਾਬੀ )</span></label>
+            <input type="number" id="total-capital" value="10000" min="100">
+            <small>ਨਿਵੇਸ਼ ਲਈ ਕੁੱਲ ਉਪਲਬਧ ਪੈਸਾ</small>
+        </div>
+        <div class="input-group" style="flex:1.5;">
+            <label>ਮਿਆਦ <span class="hi">( ਅ )</span></label>
+            <div style="display:flex; gap:5px;">
+                <input type="number" id="sim-duration" value="2" min="1" max="1000" style="flex:1">
+                <select id="sim-duration-unit" style="flex:1">
+                    <option value="years">ਸਾਲ</option>
+                    <option value="months">ਮਹੀਨੇ</option>
+                    <option value="weeks">ਹਫ਼ਤੇ</option>
+                    <option value="days">ਦਿਨ</option>
+                </select>
+            </div>
+            <small>ਕਿੰਨਾ ਚਿਰ ਨਕਲ ਕਰਨੀ ਹੈ</small>
+        </div>
+        <div class="input-group">
+            <label>ਦੁਹਰਾਓ <span class="hi">( ਸ )</span></label>
+            <input type="number" id="sim-iterations" value="20" min="1" max="100">
+            <small>ਵਿਕਲਪਿਕ ਬਾਜ਼ਾਰ ਬ੍ਰਹਿਮੰਡਾਂ ਦੀ ਗਿਣਤੀ</small>
+        </div>
+    </div>
+
+    <!-- Combinations -->
+    <div class="combinations-wrapper" id="step-combinations">
+        <div class="combination-card" id="comb-1-card">
+            <h2>ਸੰਯੋਜਨ ਏ</h2>
+            <button class="btn-add" id="btn-add-c1">+ ਵਰਚੁਅਲ ਸੰਪਤੀ ਸ਼ਾਮਲ ਕਰੋ</button>
+            <div id="c1-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                ਨਿਵੇਸ਼ ਕੀਤਾ ₹<span id="c1-total-inv">0</span>
+                <div class="capital-left" id="c1-capital-left">ਬਾਕੀ ₹10000</div>
+            </div>
+        </div>
+        <div class="combination-card" id="comb-2-card">
+            <h2>ਸੰਯੋਜਨ ਬੀ</h2>
+            <button class="btn-add" id="btn-add-c2">+ ਵਰਚੁਅਲ ਸੰਪਤੀ ਸ਼ਾਮਲ ਕਰੋ</button>
+            <div id="c2-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                ਨਿਵੇਸ਼ ਕੀਤਾ ₹<span id="c2-total-inv">0</span>
+                <div class="capital-left" id="c2-capital-left">ਬਾਕੀ ₹10000</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-section" id="step-run">
+        <button id="btn-run-sim" class="btn-primary">ਸਿਮੂਲੇਸ਼ਨ ਚਲਾਓ</button>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" class="hidden">
+        <hr>
+        <h2 id="overall-title">ਸਮੁੱਚੇ ਨਤੀਜੇ</h2>
+
+        <!-- Overall Area Chart -->
+        <div class="chart-box" id="overall-chart-box" style="margin-bottom:20px;">
+            <div class="chart-header">
+                <h3>ਮਾਰਕੀਟ ਮਾਰਗ ਦੀ ਉਮੀਦ ( ਸਾਰੇ ਦੁਹਰਾਓ )</h3>
+                <button class="btn-expand" onclick="toggleExpand('overall-chart-box')">ਵਿਸਤਾਰ</button>
+            </div>
+            <div id="chartOverall" class="chart-render-area" style="height:320px;"></div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div id="summary-cards" class="summary-cards-wrapper">
+            <div class="summary-card" id="summary-c1">
+                <h3>ਸੰਯੋਜਨ ਏ</h3>
+                <p>ਏ . ਵੀ . ਜੀ ਅੰਤਿਮ ਮੁੱਲਯੂਃ <strong>₹<span id="c1-overall-val">0</span></strong></p>
+                <p>ਕੁੱਲ ਨਿਵੇਸ਼ਃ ₹<span id="c1-tot-inv-res">0</span></p>
+                <p>ਸਿਮੂਲੇਟਡ ਰਿਟਰਨਃ <span id="c1-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>ਲਾਭਦਾਇਕ</span>
+                    <strong id="c1-profitable">0</strong><span>% ਦੁਹਰਾਈਆਂ ਵਿੱਚ</span>
+                </div>
+            </div>
+            <div class="summary-card" id="summary-c2">
+                <h3>ਸੰਯੋਜਨ ਬੀ</h3>
+                <p>ਏ . ਵੀ . ਜੀ ਅੰਤਿਮ ਮੁੱਲਯੂਃ <strong>₹<span id="c2-overall-val">0</span></strong></p>
+                <p>ਕੁੱਲ ਨਿਵੇਸ਼ਃ ₹<span id="c2-tot-inv-res">0</span></p>
+                <p>ਸਿਮੂਲੇਟਡ ਰਿਟਰਨਃ <span id="c2-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>ਲਾਭਦਾਇਕ</span>
+                    <strong id="c2-profitable">0</strong><span>% ਦੁਹਰਾਈਆਂ ਵਿੱਚ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consequence Panel -->
+        <div id="consequence-panel" class="section-box" id="step-consequence">
+            <h3 class="section-title">ਨਤੀਜੇ ਦਾ ਸੰਖੇਪ - ਸਰਬੋਤਮ / ਸਭ ਤੋਂ ਵਧੀਆ</h3>
+            <div class="consequence-grid">
+                <div class="con-header">ਨਤੀਜਾ</div>
+                <div class="con-header">ਸੰਯੋਜਨ ਏ</div>
+                <div class="con-header col-c2">ਸੰਯੋਜਨ ਬੀ</div>
+
+                <div class="con-label">ਸਰਬੋਤਮ ਕੇਸ</div>
+                <div class="con-val best" id="con-best-a">—</div>
+                <div class="con-val best col-c2" id="con-best-b">—</div>
+
+                <div class="con-label">ਔਸਤ</div>
+                <div class="con-val avg" id="con-avg-a">—</div>
+                <div class="con-val avg col-c2" id="con-avg-b">—</div>
+
+                <div class="con-label">ਸਭ ਤੋਂ ਭੈਡ਼ਾ ਮਾਮਲਾ</div>
+                <div class="con-val worst" id="con-worst-a">—</div>
+                <div class="con-val worst col-c2" id="con-worst-b">—</div>
+
+                <div class="con-label">ਮੈਕਸ ਨੁਕਸਾਨ</div>
+                <div class="con-val worst" id="con-maxloss-a">—</div>
+                <div class="con-val worst col-c2" id="con-maxloss-b">—</div>
+            </div>
+        </div>
+
+        <!-- Guardrail-compliant conclusion -->
+        <div id="conclusion-box" class="conclusion-box hidden">
+            <h3>ਸਿਮੂਲੇਸ਼ਨ ਨਿਰੀਖਣ</h3>
+            <p id="conclusion-text"></p>
+            <p class="disclaimer-inline">ਇਹ ਇੱਕ ਨਕਲ ਹੈ ਭਵਿੱਕ ਪੂਰਵ ਅਨੁਮਾਨ ਨਹੀਂ ਪਿਛਲੇ ਨਕਲੀ ਨਤੀਜੇ ਹਨ , ਅਤੀਤ ਦੇ ਨਤੀਜਿਆਂ ਦੀ ਗਾਰੰਤ ਅਸਲ ਪੈਸੇ ਦਾ ਨਿਵੇਸ਼ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਹਮੇਸ਼ਾ ਕਿਸੇ ਐਗਰੀਨਈ ਪੈਸਾ ਨਿਵੇਸ਼ ਕਰੋ ੤</p>
+        </div>
+
+        <!-- Fraud Awareness Box -->
+        <div id="fraud-box" class="fraud-awareness-box hidden">
+            <h3>ਧੋਖਾਧਡ਼ੀ / ਘੁਟਾਲੇ ਬਾਰੇ ਜਾਗਰੂਕਤਾ</h3>
+            <ul>
+                <li>🔴 <strong>ਗਾਰੰਟੀਸ਼ਿਸ਼ ਕੀਤੀ ਗਈ ਵਾਪਸੀ</strong> ਕੋਈ ਨਿਵੇਸ਼ ਲਾਭ ਦੀ ਗਰੰਟੀ ਨਹੀਂ ਹੈ ਇਹ ਪੈਸਾ ਹੋ ਸਕਦਾ</li>
+                <li>🔴 <strong>ਤੇਜ਼ੀ ਨਾਲ ਕੰਮ ਕਰਨ ਲਈ ਦਬਾਅ</strong> ( ਹੁਣ ) ਨਿਵੇਸ਼ ਕਰੋ ਜਾਂ ਮੌਕਾ ਗੁਆਓ , ਇਹ ਇੱਕ ਹੇਰਾਫੇਰੀ ਰਣਨੀਤੀ ਹੈ ੤</li>
+                <li>🔴 <strong>ਅਣਜਾਣ ਦਲਾਲ</strong> ਜਾਂ ਓ . ਟੀ . ਪੀ / ਆਧਾਰ ਦੀ ਮੰਗ ਕਰਨ ਵਾਲੇ ਐਪ ਕਦੇ ਵੀ ਸਾਂਝਾ ਨਾ ਕਰੋ</li>
+                <li>ਹਮੇਸ਼ਾ ਜਾਂਚ ਕਰੋ ਕਿ ਕੀ ਦਲਾਲ ਰਜਿਸਟਰਡ ਹੈ <strong>ਐੱਸ . ਈ . ਬੀ . ਆਈ ( SEBI )</strong>.</li>
+                <li>ਧੋਖਾਧਡ਼ੀ ਦੀ ਰਿਪੋਰਟ ਕਰੋ <strong>ਐੱਸ . ਈ . ਬੀ . ਆਈ . ਅੰਕ</strong> ਜਾਂ ਕਾਲ ਕਰੋ <strong>ਰਾਸ਼ਟਰੀ ਸਾਈਬਰ ਅਪਰਾਧ ਹੈਲਪਲਾਈਨ 1930</strong>.</li>
+            </ul>
+        </div>
+
+        <hr>
+        <h2>ਡੀਪ ਡਾਈਵਃ ਵਿਸ਼ੇਸ਼ ਦੁਹਰਾਓ</h2>
+
+        <div class="iteration-selector" id="step-iteration">
+            <label for="chart-iteration-select"><strong>ਦੁਹਰਾਓ / ਪੂਰਨਵਰਤੀ ਚੁਣੋ ਚੁਣੋਃ</strong></label>
+            <select id="chart-iteration-select"></select>
+        </div>
+
+        <div class="charts-wrapper" id="step-charts">
+            <div class="chart-box" id="chart-a-box">
+                <div class="chart-header">
+                    <h3>ਸੰਯੋਜਨ ਇੱਕ ਮੋਮਬੱਟੀ</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-a-box')">ਵਿਸਤਾਰ</button>
+                </div>
+                <div id="chartA" class="chart-render-area" style="height:350px;"></div>
+            </div>
+            <div class="chart-box" id="chart-b-box">
+                <div class="chart-header">
+                    <h3>ਸੰਯੋਜਨ ਬੀ ਕੈਂਡਲਸਟਿਕ</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-b-box')">ਵਿਸਤਾਰ</button>
+                </div>
+                <div id="chartB" class="chart-render-area" style="height:350px;"></div>
+            </div>
+        </div>
+
+        <div class="periodic-table-container" id="step-table">
+            <h3>ਪੀਰੀਅਡ - ਬਾਈ - ਪੀਰੀਆਡ ਸੰਕਰੀਅਮ ( ਚੁਣੀ ਗਈ )</h3>
+            <table id="periodic-table">
+                <thead>
+                    <tr>
+                        <th>ਪੀਰੀਅਡ</th>
+                        <th>ਕੰਬੀਏ ਇੱਕ ਮੁੱਲ</th>
+                        <th class="col-c2">ਕੰਬਣੀ ਬੀ ਮੁੱਲ</th>
+                    </tr>
+                </thead>
+                <tbody id="periodic-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Asset Template -->
+<template id="asset-template">
+    <div class="asset-item">
+        <div class="asset-header">
+            <h4 class="asset-title">ਵਰਚੁਅਲ ਕੰਪਨੀ</h4>
+            <div class="asset-header-right">
+                <span class="risk-badge"></span>
+                <button class="btn-remove">&times;</button>
+            </div>
+        </div>
+        <div class="asset-body">
+            <div class="input-group">
+                <label>ਸੰਪਤੀ ਕਿਸਮ <span class="hi">( ਪੱਤਰ )</span></label>
+                <select class="asset-type">
+                    <option value="stock">ਵਰਚੁਅਲ ਸਟਾਕ ( ਉੱਚ ਜੋਖਮ )</option>
+                    <option value="bond">ਵਰਚੁਅਲ ਬਾਂਡ ( ਘੱਟ ਜੋਖਮ )</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>ਸ਼ੁਰੂਆਤੀ ਕੀਮਤ ₹ <span class="hi">( ਸ਼ੁਰੁ )</span></label>
+                <input type="number" class="asset-price" value="100" min="1" max="1000000">
+            </div>
+            <div class="input-group">
+                <label>ਨਿਵੇਸ਼ ਮੋਡ <span class="hi">( ਸ )</span></label>
+                <select class="inv-mode">
+                    <option value="lumpsum">ਲੰਪਸੱਮਸ਼ੁਮਸਪਸਮ ਅਕਸ</option>
+                    <option value="sip">ਹਰ ਮਹੀਨੇ</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label class="dynamic-inv-label">ਮਾਤਰਾ <span class="hi">( ਮਾਤ )</span></label>
+                <input type="number" class="inv-amount" value="50" min="1">
+                <div class="asset-total-cost" style="font-size: 0.8rem; margin-top: 4px; color: #1e40af; font-weight: 600;">
+                    ਕੁੱਲ ਨਿਵੇਸ਼ਃ ₹<span class="cost-value">5000</span>
+                </div>
+            </div>
+        </div>
+        <div class="asset-analogy"></div>
+    </div>
+</template>
+
+<!-- Sidebar Tutorial Panel -->
+<div id="tour-panel">
+    <div id="tour-step-counter">ਕਦਮ 1 ਦਾ 12</div>
+    <div id="tour-text"></div>
+    <div class="tour-buttons">
+        <button id="btn-tour-skip" class="btn-tour-secondary">ਅੰਤ ਟਿਊਟੋਰਿਅਲ</button>
+        <button id="btn-tour-next" class="btn-tour-primary">ਅਗਲਾ</button>
+    </div>
+</div>
+
+<script src="simulator.js?v=tour-i18n-20261004"></script>
+</body>
+</html>

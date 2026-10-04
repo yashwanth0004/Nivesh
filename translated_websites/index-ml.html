@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head><base href="../">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071913">
+  <title>നിവേഷ് ആത്മവിശ്വാസത്തോടെ നിക്ഷേപിക്കാൻ പഠിക്കുക</title>
+  <style>
+    :root{--bg:hsl(158, 50%, 6%);--panel:#10251c;--panel2:#142e23;--line:#254233;--ink:#f2f5eb;--muted:#a1b5a7;--lime:#c6f36b;--mint:#70dfae;--gold:#f2c66d}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 83% 3%,#173d2d 0,transparent 34%),var(--bg);color:var(--ink);font:16px/1.55 Inter,ui-sans-serif,system-ui,Segoe UI,sans-serif}a{color:inherit;text-decoration:none}button,input,select{font:inherit}.wrap{max-width:1180px;margin:auto;padding:0 26px}.top{height:76px;border-bottom:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;letter-spacing:-.04em;font-size:22px}.brand i{color:var(--lime);font-style:normal}.nav{display:flex;gap:27px;color:var(--muted);font-size:14px}.nav a:hover{color:var(--lime)}.lang{background:#11271d;color:var(--ink);border:1px solid var(--line);padding:10px 13px;border-radius:11px}.hero{padding:78px 0 60px;display:grid;grid-template-columns:1.12fr .88fr;gap:55px;align-items:center}.eyebrow{color:var(--lime);letter-spacing:.15em;text-transform:uppercase;font-size:12px;font-weight:700}.hero h1{font-size:clamp(43px,6vw,72px);line-height:1.02;letter-spacing:-.065em;margin:19px 0}.hero h1 em{color:var(--lime);font-style:normal}.hero p{font-size:18px;color:var(--muted);max-width:600px}.actions{display:flex;gap:12px;margin-top:27px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:12px;padding:12px 18px;background:#12271e;color:var(--ink);cursor:pointer}.btn.primary{background:var(--lime);color:#152218;border-color:var(--lime);font-weight:750}.btn:hover{transform:translateY(-1px);filter:brightness(1.06)}.market-card{border:1px solid #42664d;background:linear-gradient(145deg,#173326,#0d2118);border-radius:22px;padding:23px;box-shadow:0 25px 90px #0004}.market-head{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.market-value{font-size:35px;font-weight:750;margin:10px 0 0}.up{color:var(--mint);font-size:13px}.chart{height:155px;margin-top:5px}.chart svg{width:100%;height:100%;overflow:visible}.gridline{stroke:#ffffff12;stroke-width:1}.asset-row{display:flex;justify-content:space-between;border-top:1px solid #ffffff12;padding:12px 0;font-size:13px}.asset-row span:last-child{color:var(--mint)}.ticker{border-block:1px solid #ffffff13;padding:13px 0;color:#b9c9bd;font-size:12px;letter-spacing:.11em;display:flex;justify-content:space-around;flex-wrap:wrap;gap:12px}.section{padding:58px 0}.section-title{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}.section h2{font-size:32px;letter-spacing:-.04em;margin:8px 0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:linear-gradient(145deg,#11261d,#0d2018);border:1px solid var(--line);border-radius:18px;padding:23px}.card .icon{font-size:24px}.card h3{margin:14px 0 6px;font-size:19px}.card p{color:var(--muted);font-size:14px;margin:0}.tool-card{min-height:200px;display:flex;flex-direction:column;align-items:start}.tool-card .btn{margin-top:auto}.chatbox{background:#0d2118;border:1px solid var(--line);border-radius:18px;padding:17px;display:flex;flex-direction:column;min-height:0;flex:1}.messages{flex:1;overflow:auto;max-height:none}.msg{padding:11px 13px;background:#183426;border-radius:12px;margin:7px 0;font-size:14px;white-space:pre-wrap}.msg.user{background:#253c27;margin-left:32px}.input-row{display:flex;gap:8px;margin-top:12px}.input-row input,.url-row input{flex:1;min-width:0;background:#091710;border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:12px}.url-translator{margin-top:18px;padding:20px;border:1px solid var(--line);border-radius:16px;background:#10251c}.url-row{display:flex;gap:9px;margin-top:12px}.small{font-size:12px;color:var(--muted)}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.feature{padding:17px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}.feature b{color:var(--ink);display:block;margin-bottom:5px}footer{border-top:1px solid #ffffff14;padding:24px 0 38px;color:var(--muted);font-size:12px}.disclaimer{color:#ddcb9c}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#20392b;border:1px solid var(--line);border-radius:12px;padding:12px 17px;display:none;z-index:15}#language-gate{position:fixed;inset:0;background:#07130ff2;z-index:9;display:grid;place-items:center;padding:20px}.gate{max-width:500px;width:100%;background:#10251c;border:1px solid #42664d;border-radius:22px;padding:30px;box-shadow:0 30px 100px #0008}.gate h2{font-size:30px;margin:4px 0}.gate select{width:100%;margin:18px 0;background:#081812;border:1px solid var(--line);border-radius:10px;padding:13px;color:var(--ink)}.agent-trigger{padding:10px 14px;background:#183326;border:1px solid var(--line);border-radius:11px;color:var(--ink);cursor:pointer}.assistant-backdrop{position:fixed;inset:0;background:#020906a8;z-index:19}.assistant-backdrop[hidden],.assistant-drawer[hidden]{display:none}.assistant-drawer{position:fixed;z-index:20;right:0;top:0;width:min(460px,100vw);height:100dvh;padding:24px;background:#0d2018;border-left:1px solid var(--line);box-shadow:-20px 0 70px #0006;display:flex;flex-direction:column;gap:15px;animation:drawer-in .2s ease-out}.drawer-head{display:flex;justify-content:space-between;gap:16px;align-items:start}.drawer-head h2{margin:4px 0;font-size:25px}.drawer-close{border:1px solid var(--line);background:#173126;color:var(--ink);border-radius:10px;width:42px;height:42px;font-size:20px;cursor:pointer}.drawer-note{font-size:13px;color:var(--muted);margin:0}.assistant-drawer .chatbox{width:100%}@keyframes drawer-in{from{transform:translateX(24px);opacity:.7}to{transform:translateX(0);opacity:1}}@media(max-width:800px){.hero{grid-template-columns:1fr}.hero{padding-top:48px;gap:32px}.grid{grid-template-columns:1fr 1fr}.features{grid-template-columns:1fr 1fr}.nav{display:none}.section-title{align-items:start;flex-direction:column}}@media(max-width:520px){.grid{grid-template-columns:1fr}.wrap{padding-inline:18px}.market-card{padding:17px}.ticker{justify-content:flex-start}.hero h1{font-size:45px}.top{gap:8px}.agent-trigger{font-size:13px;padding:9px 10px}}
+  </style>
+</head>
+<body>
+<div id="language-gate" style="display: none;">
+  <div class="gate">
+    <div class="eyebrow">നിവേശിലേക്ക് സ്വാഗതം</div>
+    <h2>നിങ്ങൾ എങ്ങനെ പഠിക്കാൻ ആഗ്രഹിക്കുന്നു</h2>
+    <p class="muted">നിങ്ങളുടെ ഭാഷ തിരഞ്ഞെടുക്കുക . നിങ്ങൾക്ക് എപ്പോൾ അത് മാറ്റാം</p>
+    <select id="first-language">
+      <option value="en">ഇംഗ്ലീഷ്</option>
+      <option value="as">അസമിയ</option>
+      <option value="bn">ബംഗാൾ</option>
+      <option value="brx">ബോഡോ</option>
+      <option value="doi">ഡോഗ്രി</option>
+      <option value="gu">ഗുജറാത്തി</option>
+      <option value="hi">ഹിന്ദി</option>
+      <option value="kn">കന്നഡ</option>
+      <option value="ks">കാശ്മീരി</option>
+      <option value="kok">കൊങ്കണി</option>
+      <option value="mai">മൈഥിലി മൈതിളി</option>
+      <option value="ml">മലയാളം</option>
+      <option value="mni">മണിപ്പൂരി</option>
+      <option value="mr">മറാത്തി</option>
+      <option value="ne">നേപ്പാളി</option>
+      <option value="or">ഒഡിയ</option>
+      <option value="pa">പഞ്ചാബി</option>
+      <option value="sa">സംസ്കൃതം</option>
+      <option value="sat">സാന്താലി</option>
+      <option value="sd">സിന്ധി</option>
+      <option value="ta">തമിഴ്</option>
+      <option value="te">തെലുങ്ക്</option>
+      <option value="ur">ഉർദു</option>
+    </select>
+    <button class="btn primary" id="start-site" style="width:100%">നിവേഷ് പര്യവേക്ഷണം ചെയ്യുക</button>
+    <p class="small">നിങ്ങളുടെ ചോയ്സ് നിവേഷ് പേജുകൾക്കും ഇവിടെ തുറക്കുന്ന പൊതു വെബ്സൈറ്റുകൾക്ക് ബാധകമാണ് .</p>
+  </div>
+</div>
+
+<header class="top wrap">
+  <a class="brand" href="#home">നിവേഷ്<i>.</i></a>
+  <nav class="nav">
+    <a href="#learn">പഠിക്കുക</a>
+    <a href="#tools">ഉപകരണങ്ങൾ</a>
+    <a href="#browse">വെബ്സൈറ്റുകൾ പര്യവേക്ഷണം ചെയ്യുക</a>
+  </nav>
+  <button class="agent-trigger" id="agent-open" type="button">AI ലേണിംഗ് ഏജന്റ്</button>
+  <select id="language" class="lang" aria-label="Website language">
+    <option value="en">ഇംഗ്ലീഷ്</option>
+    <option value="as">അസമിയ</option>
+    <option value="bn">ബംഗാൾ</option>
+    <option value="brx">ബോഡോ</option>
+    <option value="doi">ഡോഗ്രി</option>
+    <option value="gu">ഗുജറാത്തി</option>
+    <option value="hi">ഹിന്ദി</option>
+    <option value="kn">കന്നഡ</option>
+    <option value="ks">കാശ്മീരി</option>
+    <option value="kok">കൊങ്കണി</option>
+    <option value="mai">മൈഥിലി മൈതിളി</option>
+    <option value="ml">മലയാളം</option>
+    <option value="mni">മണിപ്പൂരി</option>
+    <option value="mr">മറാത്തി</option>
+    <option value="ne">നേപ്പാളി</option>
+    <option value="or">ഒഡിയ</option>
+    <option value="pa">പഞ്ചാബി</option>
+    <option value="sa">സംസ്കൃതം</option>
+    <option value="sat">സാന്താലി</option>
+    <option value="sd">സിന്ധി</option>
+    <option value="ta">തമിഴ്</option>
+    <option value="te">തെലുങ്ക്</option>
+    <option value="ur">ഉർദു</option>
+  </select>
+</header>
+
+<main id="home">
+  <section class="hero wrap">
+    <div>
+      <div class="eyebrow">പണത്തിൽ ആത്മവിശ്വാസം വളർത്താനുള്ള ഒരു ശാന്തമായ മാർച്ച</div>
+      <h1>നിക്ഷേപം<br><em>മനസ്സിലാക്കൽ .</em></h1>
+      <p>വിപണികളുടെ പരീക്ഷണ ആശയങ്ങൾ സുരക്ഷിതമായി പര്യവേക്ഷണം ചെയ്യുക , ഓരോ സീസണിലും നിക്ഷേപകരെ അടിസ്ഥാനമാക്കി നിലനിർത്താൻ സഹായിക്കുന്ന ശീലം പഠിക്കുക .</p>
+      <div class="actions">
+        <a class="btn primary" href="#tools">പഠന ഉപകരണങ്ങൾ പര്യവേക്ഷണം ചെയ്യുക</a>
+        <button class="btn open-agent" type="button">പഠന ഏജന്റിനോട് ചോദിക്കുക</button>
+      </div>
+      <p class="small disclaimer">വിദ്യാഭ്യാസം മാത്രം യഥാർത്ഥ പണമില്ല വ്യക്തിഗത സാമ്പത്തിക ഉപദേശം ഇല്ല</p>
+    </div>
+    <div class="market-card">
+      <div class="market-head"><span>നിങ്ങളുടെ പഠന പോർട്ട്ഫോളിയോ</span><span>സിമ്യുലേഷൻ</span></div>
+      <div class="market-value">₹10,000</div>
+      <div class="up">^ പ്രാക്ടീസ് ക്യാപിറ്റൽ വെർച്വൽ മാത്രം</div>
+      <div class="chart">
+        <svg viewBox="0 0 500 155" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="fill" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#a9e66e" stop-opacity=".28"></stop>
+              <stop offset="1" stop-color="#a9e66e" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <path class="gridline" d="M0 35H500M0 78H500M0 120H500"></path>
+          <path d="M0 125 C30 115 38 129 61 101 S96 112 122 83 S151 98 180 74 S218 87 244 62 S279 76 305 57 S335 70 361 44 S396 65 421 31 S464 44 500 17 L500 155 L0 155Z" fill="url(#fill)"></path>
+          <path d="M0 125 C30 115 38 129 61 101 S96 112 122 83 S151 98 180 74 S218 87 244 62 S279 76 305 57 S335 70 361 44 S396 65 421 31 S464 44 500 17" fill="none" stroke="#c6f36b" stroke-width="3"></path>
+        </svg>
+      </div>
+      <div class="asset-row"><span>അടിസ്ഥാന കാര്യങ്ങൾ പഠിക്കുക</span><span>ചെറുതായി തുടങ്ങുക</span></div>
+      <div class="asset-row"><span>ഒരു തന്ത്രം പരിശീലിക്കുക</span><span>അപകടസാധ്യത ബോധവൽക്കരണം</span></div>
+    </div>
+  </section>
+
+  <div class="ticker">
+    <span>നിങ്ങളുടെ സ്വന്തം വേഗതയിൽ പഠിക്കുക</span>
+    <span>അപകടമില്ലാതെ സിമുലേറ്റ് ചെയ്യുക</span>
+    <span>നിക്ഷേപിക്കുന്നതിന് മുമ്പ് മനസ്സിലാക്കുക</span>
+    <span>എല്ലാ ദിവസവും പഠിതാക്കൾക്കും</span>
+  </div>
+
+  <section id="learn" class="section wrap">
+    <div class="section-title">
+      <div>
+        <div class="eyebrow">നിങ്ങളുടെ നിക്ഷേപ ഉപകരണം</div>
+        <h2>പ്രവർത്തനത്തിന് മുമ്പുള്ള വ്യക്തത .</h2>
+        <div class="muted">ആത്മവിശ്വാസം വളർത്തുന്നതിനുള്ള പ്രായോഗികമായ ഒരു സമയം .</div>
+      </div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="icon">🌱</div>
+        <h3>അവശ്യവസ്തുക്കളിൽനിന്ന് ആരംഭിക്കുക</h3>
+        <p>സേവിങ് കോമ്പൌണ്ടിംഗ് വൈവിധ്യവൻ ഡൈവിംഗ്സ് , സാധാരണ നിക്ഷേപ ഉൽ ഡെവലപ്മെന്റ് പ്രൊഡക്റ്റിംഗ് വൈവിനിഷ്മെന്റിങ്ങ് ഇൻ് എന്റേഷൻഡ് എനർമേഷൻസ് എങ്ങനെ പ്രവർജ് ആൾ .</p>
+      </article>
+      <article class="card">
+        <div class="icon">🧭</div>
+        <h3>അപകടസാധ്യത ദൃശ്യമാക്കുക</h3>
+        <p>അനിശ്ചിതത്വവും സമയത്തിൻ്റെ ഏകാഗ്രതയും എങ്ങനെ രൂപപ്പെടുത്താം എന്ന് പര്യവേക്ഷണം ചെയ്യുക .</p>
+      </article>
+      <article class="card">
+        <div class="icon">🛡️</div>
+        <h3>മുന്നറിയിപ്പ് അടയാളങ്ങൾ</h3>
+        <p>ഉറപ്പുള്ള വരുമാനവും മറ്റ് പരിചിതവുമായ തട്ടിപ്പു തന്ത്രങ്ങളും ചോദ്യം ചെയ്യാൻ പഠിക്കുക .</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="tools" class="section wrap">
+    <div class="section-title">
+      <div>
+        <div class="eyebrow">പരസ്പരമുള്ള ഉപകരണങ്ങൾ</div>
+        <h2>ശ്രമിച്ച് പഠിക്കുക .</h2>
+      </div>
+    </div>
+    <div class="grid">
+      <article class="card tool-card">
+        <div class="icon">📊</div>
+        <h3>നിക്ഷേപ സിമുലേറ്റർ</h3>
+        <p>വിപണി സാഹചര്യങ്ങളിലുടനീളമുള്ള വെർച്വൽ തന്ത്രങ്ങൾ താരതമ്യം ചെയ്യുക , അപകടസാധ്യത യാത്രയെ എങ്ങനെ മാറ്റിമറച്ച് നോക്കാം .</p>
+        <a class="btn primary" href="simulator.html">സിമുലേറ്റ്യൂലേറ്റർ തുറക്കുക</a>
+      </article>
+      <article class="card tool-card">
+        <div class="icon">🛡️</div>
+        <h3>സെബി തട്ടിപ്പ് കണ്ടെത്തൽ</h3>
+        <p>ഔദ്യോഗിക സെബി രജിസ്ട്രേഷനുകൾ പരിശോധിക്കുക ആമുഖം പരിശോധനയും അപകടകരമായ പി .</p>
+        <a class="btn primary" href="/fraud/">തുറന്ന തട്ടിപ്പ് കണ്ടെത്തൽ</a>
+      </article>
+      <article class="card tool-card">
+        <div class="icon">📄</div>
+        <h3>നിബന്ധനകളും അവലോകനവും</h3>
+        <p>സാധ്യതയുള്ള ചുവന്ന പതാകകളുടെ ലളിതമായ സംഗ്രഹവും ഏറ്റവും ശക്തമായ ഉപയോക്തൃ - ഭാഷയിലെ ഘടകങ്ങളും ലഭിക്കുന്നതിന് നിബന്ധനകളും ഉൾ അപ്ലോഡ് ചെയ്യുക .</p>
+        <a class="btn primary" href="/terms-checker.html">ഒരു രേഖ അവലോകനം ചെയ്യുക</a>
+      </article>
+      <article class="card tool-card">
+        <div class="icon">🤖</div>
+        <h3>നിക്ഷേപക പഠന ഏജന്റ്</h3>
+        <p>പൊതുവായ സാമ്പത്തിക വിദ്യാഭ്യാസ ചോദ്യങ്ങൾ നിങ്ങൾ തിരഞ്ഞെടുത്ത ഭാഷയിൽ ചോദിക്കുക .</p>
+        <button class="btn open-agent" type="button">ചാറ്റ് തുറക്കുക</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="eyebrow">സ്ഥിരമായ പുരോഗതിക്കായി</div>
+    <h2>നല്ല നിക്ഷേപം ആരംഭങ്ങൾ .</h2>
+    <div class="features">
+      <div class="feature"><b>ആദ്യം പഠിക്കുക</b>തീരുമാനങ്ങൾ എടുക്കുന്നതിന് മുമ്പ് ധാരണകൾ സ്വീകരിക്കുക .</div>
+      <div class="feature"><b>സുരക്ഷിതമായി ശ്രമിക്കുക .</b>വെർച്വൽ സാഹചര്യങ്ങൾ ഉപയോഗിച്ച് തന്ത്രങ്ങുക .</div>
+      <div class="feature"><b>കൌതുകത്തോടെ ഇരിക്കുക .</b>അപരിചിതമായ പദങ്ങൾ വിശദീകരിക്കാൻ ഏജന്റിനോട് ആവശ്യപ്പെടുക .</div>
+      <div class="feature"><b>നിങ്ങളുടെ ഭാഷ ഉപയോഗിക്കുക</b>അന്തർനിർമ്മിത ഭാഷാ മെനുവിൽ നിന്ന് തിരഞ്ഞെടുക്കുക .</div>
+    </div>
+  </section>
+</main>
+
+<!-- Separate Dedicated SEBI Fraud Detector Drawer -->
+<div class="assistant-backdrop" id="agent-backdrop" hidden=""></div>
+<aside class="assistant-drawer" id="agent-drawer" role="dialog" aria-modal="true" aria-labelledby="agent-title" hidden="">
+  <div class="drawer-head">
+    <div>
+      <div class="eyebrow">നിങ്ങളുടെ പഠന പങ്കാളിയാണ്</div>
+      <h2 id="agent-title">ഏജന്റിനോട് ചോദിക്കുക .</h2>
+    </div>
+    <button class="drawer-close" id="agent-close" type="button" aria-label="Close AI learning agent">×</button>
+  </div>
+  <p class="drawer-note">പൊതുവായ നിക്ഷേപ ആശയങ്ങളായ സമ്പാദ്യത്തെക്കുറിച്ചും തട്ടിപ്പുകളെ തടയുന്നതിനെക്കുറിച്ചുമുള്ള പ്രതികരണങ്ങൾ സൃഷ്ടിക്കുന്നതുപോലെ അവ എപ്പോഴുക്കുന്നതുപോലെയുള്ള ഉത്തരങ്ങളെ കുറിച്ചും ചോദർത്തുമ്പോഴും ചോദിക്കുകയോ ഓണാക്കലും .</p>
+  <div class="chatbox">
+    <div class="messages" id="messages">
+      <div class="msg">ഹലോ , ഒരു പൊതു നിക്ഷേപം അല്ലെങ്കിൽ പണം ആശയത്തെക്കുറിച്ച് എന്നോട് ചോദിക്കുക .</div>
+    </div>
+    <div class="input-row">
+      <textarea id="question" rows="3" placeholder="For example: What is diversification? Use Enter for a new line; Ctrl+Enter to send."></textarea>
+      <button id="send" class="btn primary">ചോദിക്കുക</button>
+      <button id="speak" class="btn" title="Use browser voice input">🎙</button>
+    </div>
+    <div class="small" id="chat-status">പ്രസംഗം തിരിച്ചറിയൽ ബ്രൌസർ പിന്തുണയ്ക്കുന്ന സ്ഥലങ്ങളിൽ വോയ്സ് ഇൻപുട്ട് ലഭ്യമാണ് .</div>
+  </div>
+</aside>
+
+<aside class="assistant-drawer" id="fraud-drawer" role="dialog" aria-modal="true" aria-labelledby="fraud-title" hidden="">
+  <div class="drawer-head">
+    <div>
+      <div class="eyebrow">സുരക്ഷ &amp; സംരക്ഷണം</div>
+      <h2 id="fraud-title">സെബി തട്ടിപ്പ് കണ്ടെത്തൽ</h2>
+    </div>
+    <button class="drawer-close" id="fraud-close" type="button" aria-label="Close fraud detector">×</button>
+  </div>
+  <p class="drawer-note">സെബി രജിസ്ട്രേഷനുകൾ പരിശോധിക്കുക ആമുഖം ഹാൻ്റെ റിസ്ക് ഉള്ള പി .</p>
+  
+  <div class="chatbox" style="overflow-y: auto; max-height: 72vh; padding-right: 4px;">
+    <form id="drawerAuditForm" class="space-y-4 mb-6">
+      <div style="margin-bottom: 12px;">
+        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #cbd5e1;">സന്ദേശം / അവകാശവാദം</label>
+        <textarea id="drawerInputText" rows="2" style="width: 100%; background: #030712; border: 1px solid #374151; border-radius: 8px; padding: 10px; color: #fff; font-size: 0.85rem;" placeholder="e.g. Official Group! Reg: INZ000031633 - Guaranteed 200% returns"></textarea>
+      </div>
+
+      <div style="margin-bottom: 12px;">
+        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #cbd5e1;">ക്ലെയിം ചെയ്ത ഉപയോക്തൃനാമം / ഹാൻഡ് ( ഓപ്ഷണൽ )</label>
+        <input type="text" id="drawerClaimedUsername" style="width: 100%; background: #030712; border: 1px solid #374151; border-radius: 8px; padding: 10px; color: #fff; font-size: 0.85rem;" placeholder="e.g. fake_trader_vip">
+      </div>
+
+      <div style="margin-bottom: 12px;">
+        <label style="display: block; font-size: 0.85rem; margin-bottom: 4px; color: #cbd5e1;">പി . എൽ സ്ക്രീൻഷോട്ട് അപ്ലോഡ് ചെയ്യുക</label>
+        <input type="file" id="drawerScreenshot" style="width: 100%; font-size: 0.8rem; color: #9ca3af;">
+      </div>
+
+      <button type="submit" id="drawerSubmitBtn" class="btn primary" style="width: 100%; justify-content: center; font-weight: bold; padding: 10px;">
+        AI ഓഡിറ്റ് നടത്തുക
+      </button>
+    </form>
+
+    <div id="drawerResults" class="hidden" style="border-top: 1px solid #374151; padding-top: 16px;">
+      <div id="drawerOverallBadge" style="padding: 10px; border-radius: 8px; font-weight: bold; text-align: center; margin-bottom: 12px; font-size: 0.9rem;"></div>
+      
+      <div style="background: #030712; padding: 12px; border-radius: 8px; border: 1px solid #374151; margin-bottom: 10px;">
+        <p style="font-weight: 600; color: #34d399; margin-bottom: 4px; font-size: 0.85rem;">പ്രക്രിയ 1: സെബി പരിശോധന</p>
+        <div id="drawerP1Result" style="font-size: 0.8rem; color: #d1d5db; line-height: 1.4;"></div>
+      </div>
+
+      <div style="background: #030712; padding: 12px; border-radius: 8px; border: 1px solid #374151;">
+        <p style="font-weight: 600; color: #34d399; margin-bottom: 4px; font-size: 0.85rem;">പ്രക്രിയ 2 : റിസ്ക് &amp; പി . എൽ ഓഡിറ്റ്</p>
+        <div id="drawerP2Result" style="font-size: 0.8rem; color: #d1d5db; line-height: 1.4;"></div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<footer>
+  <div class="wrap">
+    <span class="disclaimer">വിദ്യാഭ്യാസ ആവശ്യങ്ങൾക്ക് മാത്രം . ഈ സൈറ്റ് ഒരു ബ്രോക്കർ നിക്ഷേപ ഉപദേശകൻ അല്ലെങ്കിൽ വ്യക്തിഗത സാമ്പത്തിക ഉപദേശങ്ങൾ , സിമുലേറ്റഡ് ഫലങ്ങളുടെ ഭാവി ഫലം പ്രവചെല്ലുകൾ ഭാവിയിലെ നിക്ഷേപിച്ച് വെബ്സൈറ്റുകളുടെ ഉറവിടം അല്ല</span><br><br>
+    നിവേഷ് ലേണിംഗ് · ലോക്കൽ പ്രോജക്ട് സൈറ്റ്
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const select=document.querySelector('#language'),first=document.querySelector('#first-language');
+const saved=localStorage.getItem('nivesh-language')||'';if(saved){select.value=saved;document.querySelector('#language-gate').style.display='none'}else document.querySelector('#language-gate').style.display='grid';
+const currentCookie=(document.cookie.match(/(?:^|; )nivesh_lang=([^;]*)/)||[])[1]||'';if(saved&&decodeURIComponent(currentCookie)!==saved){document.cookie='nivesh_lang='+encodeURIComponent(saved)+'; Path=/; SameSite=Lax';location.reload()}
+const lang=()=>select.value||'en';
+const speechLocales={en:'en-IN',as:'as-IN',bn:'bn-IN',brx:'brx-IN',doi:'doi-IN',gu:'gu-IN',hi:'hi-IN',kn:'kn-IN',ks:'ks-IN',kok:'kok-IN',mai:'mai-IN',ml:'ml-IN',mni:'mni-IN',mr:'mr-IN',ne:'ne-IN',or:'or-IN',pa:'pa-IN',sa:'sa-IN',sat:'sat-IN',sd:'sd-IN',ta:'ta-IN',te:'te-IN',ur:'ur-IN'};
+const speechLocale=code=>speechLocales[code]||`${code}-IN`;
+function matchingSpeechVoice(code){if(!('speechSynthesis'in window))return null;const voices=window.speechSynthesis.getVoices();const wanted=speechLocale(code).toLowerCase();return voices.find(voice=>voice.lang.toLowerCase()===wanted)||voices.find(voice=>voice.lang.toLowerCase().split('-')[0]===code.toLowerCase())||null}
+function setLang(code){select.value=code;first.value=code;localStorage.setItem('nivesh-language',code);document.cookie='nivesh_lang='+encodeURIComponent(code)+'; Path=/; SameSite=Lax';let sourcePath=decodeURIComponent(location.pathname);if(sourcePath.startsWith('/translated_websites/'))sourcePath='/'+sourcePath.split('/').pop().replace(/-[a-z]{2,3}(?=\.html$)/i,'');const sourceFile=(sourcePath==='/'?'/index.html':sourcePath).split('/').pop();const target=`/language/${encodeURIComponent(code)}/${encodeURIComponent(sourceFile)}`;location.href=target+location.search+location.hash}select.addEventListener('change',()=>setLang(select.value));document.querySelector('#start-site').onclick=()=>setLang(first.value||'en');const drawer=document.querySelector('#agent-drawer'),backdrop=document.querySelector('#agent-backdrop');function openAgent(){drawer.hidden=false;backdrop.hidden=false;document.querySelector('#question').focus()}function closeAgent(){drawer.hidden=true;backdrop.hidden=true;document.querySelector('#agent-open').focus()}document.querySelector('#agent-open').onclick=openAgent;document.querySelectorAll('.open-agent').forEach(b=>b.addEventListener('click',openAgent));document.querySelector('#agent-close').onclick=closeAgent;backdrop.onclick=closeAgent;document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!drawer.hidden)closeAgent()});
+const toast=(m)=>{let t=document.querySelector('#toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3500)};
+let generationActive=false,speechPending=0;
+const sendButton=document.querySelector('#send'),speechInputButton=document.querySelector('#speak'),chatStatus=document.querySelector('#chat-status');
+function updateChatState(){sendButton.disabled=generationActive||speechPending>0;speechInputButton.disabled=generationActive||speechPending>0;if(generationActive)chatStatus.textContent='Generating the answer and queueing its speech…';else if(speechPending>0)chatStatus.textContent='Answer is complete. Letting the queued speech finish…';else chatStatus.textContent='Ready for your next question.'}
+function speakSentence(text){if(!('speechSynthesis'in window)||!window.SpeechSynthesisUtterance)return;const selectedLanguage=lang();const utterance=new SpeechSynthesisUtterance(text);utterance.lang=speechLocale(selectedLanguage);const voice=matchingSpeechVoice(selectedLanguage);if(voice)utterance.voice=voice;speechPending++;let settled=false;const finish=()=>{if(settled)return;settled=true;speechPending=Math.max(0,speechPending-1);updateChatState()};utterance.onend=finish;utterance.onerror=finish;try{window.speechSynthesis.speak(utterance)}catch(_error){finish()}}
+const sentenceBoundary=/(?<=[^\d])[.!?।॥]+\s*|\n+/g;
+document.querySelector('#send').onclick=async()=>{const input=document.querySelector('#question'),question=input.value.trim();if(!question||generationActive||speechPending)return;const box=document.querySelector('#messages');const userMsg=document.createElement('div');userMsg.className='msg user';userMsg.textContent=question;box.append(userMsg);input.value='';const answer=document.createElement('div');answer.className='msg';answer.textContent='Connecting to the local learning agent…';box.append(answer);box.scrollTop=box.scrollHeight;generationActive=true;let speechBuffer='';updateChatState();
+  const speakReadySentences=()=>{let match;while((match=sentenceBoundary.exec(speechBuffer))!==null){const sentence=speechBuffer.slice(0,match.index+match[0].length).trim();speechBuffer=speechBuffer.slice(match.index+match[0].length);if(sentence)speakSentence(sentence);sentenceBoundary.lastIndex=0}};
+  try{const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:question,lang:lang()})});if(!response.ok){let detail='';try{detail=(await response.json()).error||''}catch(_error){}throw Error(detail||`Agent server returned ${response.status}.`)}if(!response.body)throw Error('This browser cannot receive streamed responses.');answer.textContent='';const reader=response.body.getReader(),decoder=new TextDecoder();let pending='';while(true){const {value,done}=await reader.read();pending+=decoder.decode(value||new Uint8Array(),{stream:true});let newline;while((newline=pending.indexOf('\n'))>=0){const line=pending.slice(0,newline);pending=pending.slice(newline+1);if(!line.trim())continue;const event=JSON.parse(line);if(event.type==='status'){chatStatus.textContent=event.text}else if(event.type==='chunk'){answer.textContent+=event.text;speechBuffer+=event.text;speakReadySentences();box.scrollTop=box.scrollHeight}else if(event.type==='error'){throw Error(event.error||'The agent could not finish this answer.')}}if(done)break}pending+=decoder.decode();if(pending.trim()){const event=JSON.parse(pending);if(event.type==='status')chatStatus.textContent=event.text;else if(event.type==='chunk'){answer.textContent+=event.text;speechBuffer+=event.text;speakReadySentences()}else if(event.type==='error')throw Error(event.error||'The agent could not finish this answer.')}if(speechBuffer.trim())speakSentence(speechBuffer.trim());if(!answer.textContent.trim())answer.textContent='The agent returned an empty answer.'}
+  catch(error){answer.textContent=error instanceof TypeError?'Cannot reach the local website server. Restart it with `python web_app.py` and try again.':error.message;chatStatus.textContent='The answer did not complete. Your next attempt can start a fresh response.';speechBuffer=''}finally{generationActive=false;updateChatState();box.scrollTop=box.scrollHeight}};
+document.querySelector('#question').onkeydown=e=>{if(e.key==='Enter')document.querySelector('#send').click()};
+document.querySelector('#speak').onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Voice input is not supported in this browser.');return}const rec=new SR();rec.lang=speechLocale(lang());rec.onresult=e=>{document.querySelector('#question').value=e.results[0][0].transcript;document.querySelector('#send').click()};rec.onerror=()=>toast('Could not capture speech. Check microphone permission.');rec.start()};
+
+// --- SEBI & Fraud Detector Integration ---
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('drawerAuditForm');
+    if (!form) return;
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('drawerSubmitBtn');
+        const resultsDiv = document.getElementById('drawerResults');
+        
+        btn.disabled = true;
+        btn.textContent = "Analyzing with AI...";
+        
+        // Add your AJAX/fetch logic here to submit to backend
+    });
+});
+</script>
+
+<!-- Code injected by live-server -->
+<script>
+  // <![CDATA[  <-- For SVG support
+  if ('WebSocket' in window) {
+    (function () {
+      function refreshCSS() {
+        var sheets = [].slice.call(document.getElementsByTagName("link"));
+        var head = document.getElementsByTagName("head")[0];
+        for (var i = 0; i < sheets.length; ++i) {
+          var elem = sheets[i];
+          var parent = elem.parentElement || head;
+          parent.removeChild(elem);
+          var rel = elem.rel;
+          if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+          }
+          parent.appendChild(elem);
+        }
+      }
+      var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+      var address = protocol + window.location.host + window.location.pathname + '/ws';
+      var socket = new WebSocket(address);
+      socket.onmessage = function (msg) {
+        if (msg.data == 'reload') window.location.reload();
+        else if (msg.data == 'refreshcss') refreshCSS();
+      };
+      if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+        console.log('Live reload enabled.');
+        sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+      }
+    })();
+  }
+  else {
+    console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+  }
+  // ]]>
+</script>
+
+<script src="/chat-widget.js?v=clean-speech-20261004"></script>
+</body>
+</html>
+

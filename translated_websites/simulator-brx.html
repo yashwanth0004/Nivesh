@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="brx">
+<head><base href="../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>निवेश सिम्युलेटर रां थिसनग्रा रैखाथि आइजें</title>
+    <link rel="stylesheet" href="simulator.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+
+<!-- Safety Disclaimer Banner -->
+<div id="disclaimer-banner">
+    🛡️ <strong>सोलोंथायारि आगजु</strong> &nbsp;|&nbsp;
+    जेबो नंगुबै रां थाथ ' । &nbsp;|&nbsp; रां बोसोन गैया &nbsp;|&nbsp; दालालि नङा ।
+</div>
+
+<div id="simulator-container">
+    <header id="step-header">
+        <div class="header-left">
+            <h1>निवेश सिम्युलेटर</h1>
+            <span class="header-sub">रां थिसननायनि फिथाय सिम्युलेटर</span>
+        </div>
+        <div class="header-right">
+            <button id="btn-lang" class="btn-lang">हिन्दी</button>
+            <button id="btn-tutorial" class="btn-info">टिउटरियेलखौ जागाय ।</button>
+        </div>
+    </header>
+
+    <!-- Scenario Selector -->
+    <div class="section-box" id="step-scenario">
+        <h3 class="section-title">मोनसे हाथाइनि नुथाय सायख ' । <span class="hi">बाजारखौ मोजां मोनो ।</span></h3>
+        <div class="scenario-cards">
+            <div class="scenario-card active" data-scenario="normal">
+                <div class="sc-icon">🟢</div>
+                <div class="sc-name">सरासनस्रा हाथाइ ।</div>
+                <div class="sc-name-hi">समान बाजार</div>
+                <div class="sc-risk low">खम खैफोद</div>
+            </div>
+            <div class="scenario-card" data-scenario="crash">
+                <div class="sc-icon">📉</div>
+                <div class="sc-name">हाथाव</div>
+                <div class="sc-name-hi">बाजार दुरग ' ना</div>
+                <div class="sc-risk high">गोजौ खैफोद</div>
+            </div>
+            <div class="scenario-card" data-scenario="highvol">
+                <div class="sc-icon">⚡</div>
+                <div class="sc-name">गोजौ सोलाय - सोल ' जानाय ।</div>
+                <div class="sc-name-hi">उचुउछुथुआउथाराउथाउदाउद</div>
+                <div class="sc-risk high">गोजौ खैफोद</div>
+            </div>
+            <div class="scenario-card" data-scenario="fraud">
+                <div class="sc-icon">🚨</div>
+                <div class="sc-name">जालाय - फाननाय ।</div>
+                <div class="sc-name-hi">दोखाड़ी</div>
+                <div class="sc-risk extreme">जोबोद</div>
+            </div>
+            <div class="scenario-card" data-scenario="leverage">
+                <div class="sc-icon">⚠️</div>
+                <div class="sc-name">मुलाम्फा ।</div>
+                <div class="sc-name-hi">उ ' देर से न</div>
+                <div class="sc-risk high">गोजौ खैफोद</div>
+            </div>
+        </div>
+        <div id="scenario-desc" class="scenario-desc"></div>
+    </div>
+
+    <!-- Mode -->
+    <div class="mode-selector" id="step-mode">
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="single"> सिङ्गल स्ट्रेटेजी<span class="hi">मोनसे</span>
+        </label>
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="compare" checked> मोन्नै सोलोखौ रुजु ।<span class="hi">दो रानीया तुना</span>
+        </label>
+    </div>
+
+    <!-- Global Settings -->
+    <div class="global-settings section-box" id="step-global">
+        <div class="input-group">
+            <label>केपिटेल <span class="hi">( कुल )</span></label>
+            <input type="number" id="total-capital" value="10000" min="100">
+            <small>रां थिसननायनि थाखाय गासै मोनथावना ।</small>
+        </div>
+        <div class="input-group" style="flex:1.5;">
+            <label>सम <span class="hi">( गुबुन )</span></label>
+            <div style="display:flex; gap:5px;">
+                <input type="number" id="sim-duration" value="2" min="1" max="1000" style="flex:1">
+                <select id="sim-duration-unit" style="flex:1">
+                    <option value="years">बोसोरफोर</option>
+                    <option value="months">दानफोर ।</option>
+                    <option value="weeks">सप्ता</option>
+                    <option value="days">सानफोर ।</option>
+                </select>
+            </div>
+            <small>सिमुलेट खालामनो बेसेबां गोबाव</small>
+        </div>
+        <div class="input-group">
+            <label>सोलाय - सोल ' । <span class="hi">( पूर्ण )</span></label>
+            <input type="number" id="sim-iterations" value="20" min="1" max="100">
+            <small>गुबुन हाथाइनि मुलुगफोरनि अनजिमा</small>
+        </div>
+    </div>
+
+    <!-- Combinations -->
+    <div class="combinations-wrapper" id="step-combinations">
+        <div class="combination-card" id="comb-1-card">
+            <h2>ज ' जानाय ए</h2>
+            <button class="btn-add" id="btn-add-c1">+ भार्च्युएल एसेट दाजाबदेर ।</button>
+            <div id="c1-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                रां थिसनजानायः ₹<span id="c1-total-inv">0</span>
+                <div class="capital-left" id="c1-capital-left">आद्रा ₹10000</div>
+            </div>
+        </div>
+        <div class="combination-card" id="comb-2-card">
+            <h2>ज ' जानाय बि</h2>
+            <button class="btn-add" id="btn-add-c2">+ भार्च्युएल एसेट दाजाबदेर ।</button>
+            <div id="c2-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                रां थिसनजानायः ₹<span id="c2-total-inv">0</span>
+                <div class="capital-left" id="c2-capital-left">आद्रा ₹10000</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-section" id="step-run">
+        <button id="btn-run-sim" class="btn-primary">सिमुलेशन सालाय</button>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" class="hidden">
+        <hr>
+        <h2 id="overall-title">गासै सोलायसोल ' नि फिथाय</h2>
+
+        <!-- Overall Area Chart -->
+        <div class="chart-box" id="overall-chart-box" style="margin-bottom:20px;">
+            <div class="chart-header">
+                <h3>मिजिंथिजानाय हाथाइनि लामा ( गासैबो सोलायथायफोर )</h3>
+                <button class="btn-expand" onclick="toggleExpand('overall-chart-box')">फेहेर ।</button>
+            </div>
+            <div id="chartOverall" class="chart-render-area" style="height:320px;"></div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div id="summary-cards" class="summary-cards-wrapper">
+            <div class="summary-card" id="summary-c1">
+                <h3>ज ' जानाय ए</h3>
+                <p>ए . भि . जि जोबथा बेसेनः <strong>₹<span id="c1-overall-val">0</span></strong></p>
+                <p>गासै रां थिसनजानायः ₹<span id="c1-tot-inv-res">0</span></p>
+                <p>सिम्युलेटेड रिटार्टः <span id="c1-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>मुलाम्फा गोनां</span>
+                    <strong id="c1-profitable">0</strong><span>% सिमुलेसनाव</span>
+                </div>
+            </div>
+            <div class="summary-card" id="summary-c2">
+                <h3>ज ' जानाय बि</h3>
+                <p>ए . भि . जि जोबथा बेसेनः <strong>₹<span id="c2-overall-val">0</span></strong></p>
+                <p>गासै रां थिसनजानायः ₹<span id="c2-tot-inv-res">0</span></p>
+                <p>सिम्युलेटेड रिटार्टः <span id="c2-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>मुलाम्फा गोनां</span>
+                    <strong id="c2-profitable">0</strong><span>% सिमुलेसनाव</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consequence Panel -->
+        <div id="consequence-panel" class="section-box" id="step-consequence">
+            <h3 class="section-title">फिथायफोरनि सारसंनाय - साबसिन / गाज्रिसिन फिथाइफोर</h3>
+            <div class="consequence-grid">
+                <div class="con-header">फिथाय ।</div>
+                <div class="con-header">ज ' जानाय ए</div>
+                <div class="con-header col-c2">ज ' जानाय बि</div>
+
+                <div class="con-label">साबसिन केस</div>
+                <div class="con-val best" id="con-best-a">—</div>
+                <div class="con-val best col-c2" id="con-best-b">—</div>
+
+                <div class="con-label">सानजेर</div>
+                <div class="con-val avg" id="con-avg-a">—</div>
+                <div class="con-val avg col-c2" id="con-avg-b">—</div>
+
+                <div class="con-label">बयनिख्रुइ गाज्रिसिन केस</div>
+                <div class="con-val worst" id="con-worst-a">—</div>
+                <div class="con-val worst col-c2" id="con-worst-b">—</div>
+
+                <div class="con-label">मेक्स लोस</div>
+                <div class="con-val worst" id="con-maxloss-a">—</div>
+                <div class="con-val worst col-c2" id="con-maxloss-b">—</div>
+            </div>
+        </div>
+
+        <!-- Guardrail-compliant conclusion -->
+        <div id="conclusion-box" class="conclusion-box hidden">
+            <h3>सिमुलेशन नोजोर होनाय</h3>
+            <p id="conclusion-text"></p>
+            <p class="disclaimer-inline">बियो मोनसे सानदांथि नङा । सिगांनि फिथायफोरा इयुननि रां थिसननायनि सिगां जेब्लाबो सेबिग ' सेबिया रेबथुमनाय रांखौ खाथायारि मुंजों लोगोसे गासिबो सासे एस .</p>
+        </div>
+
+        <!-- Fraud Awareness Box -->
+        <div id="fraud-box" class="fraud-awareness-box hidden">
+            <h3>जालाय - फाननाय / स्केम अवेयरनेस अ ' डखादि</h3>
+            <ul>
+                <li>🔴 <strong>गारान्टिगोनां रिटारन</strong> मोनसे गोजा सिलाइ । रां थिसननाया मुलाम्फाखौ बांहोयोब्ला जेबो नङा , आरो मुलामफा मोनोमोननाय जायो</li>
+                <li>🔴 <strong>गोख्रै मावनायनि नारसिननाय</strong> ( दा ) रां थिसन एबा खाबुखौ गारायनाया मोनसे सोलो ।</li>
+                <li>🔴 <strong>मिथिजायै दालालिफोर</strong> एबा अ . टि . पि / आधारखौ सोंग्रा एपफोरा माब्लाबाबो ।</li>
+                <li>दालानआ रेबथुमना दं ना गैया बेखौ जेब्लाबो नायग्रोम । <strong>सेबी ( सेब )</strong>.</li>
+                <li>जालाय - फाननायनि फोरमायथि हो । <strong>सेबि स्क ' र</strong> एबा कल खालाम । <strong>हादोरारि साइबर क्राइम हेल्पलाइनः 1930</strong>.</li>
+            </ul>
+        </div>
+
+        <hr>
+        <h2>डीप डाइभः थि सोलाय - सोल ' खालाम ।</h2>
+
+        <div class="iteration-selector" id="step-iteration">
+            <label for="chart-iteration-select"><strong>सोलायसोल ' / फारि सायख ' ।</strong></label>
+            <select id="chart-iteration-select"></select>
+        </div>
+
+        <div class="charts-wrapper" id="step-charts">
+            <div class="chart-box" id="chart-a-box">
+                <div class="chart-header">
+                    <h3>ज ' जानाय ए कैन्डलस्टिक</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-a-box')">फेहेर ।</button>
+                </div>
+                <div id="chartA" class="chart-render-area" style="height:350px;"></div>
+            </div>
+            <div class="chart-box" id="chart-b-box">
+                <div class="chart-header">
+                    <h3>कम्बिनसन बि . केन्डलस्टिक</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-b-box')">फेहेर ।</button>
+                </div>
+                <div id="chartB" class="chart-render-area" style="height:350px;"></div>
+            </div>
+        </div>
+
+        <div class="periodic-table-container" id="step-table">
+            <h3>सम - फारिया सानफ्रोदा ( सायख ' )</h3>
+            <table id="periodic-table">
+                <thead>
+                    <tr>
+                        <th>सम</th>
+                        <th>मोनसे बेसेन ( )</th>
+                        <th class="col-c2">कम्ब बि मान ( )</th>
+                    </tr>
+                </thead>
+                <tbody id="periodic-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Asset Template -->
+<template id="asset-template">
+    <div class="asset-item">
+        <div class="asset-header">
+            <h4 class="asset-title">वर्चुएल कम्पानि</h4>
+            <div class="asset-header-right">
+                <span class="risk-badge"></span>
+                <button class="btn-remove">&times;</button>
+            </div>
+        </div>
+        <div class="asset-body">
+            <div class="input-group">
+                <label>सम्पथि रोखोम <span class="hi">( पार्क )</span></label>
+                <select class="asset-type">
+                    <option value="stock">भार्च्युएल स्ट ' क ( गोजौ रिस्क )</option>
+                    <option value="bond">भार्च्युएल बन्ड ( ल ' र्स्क )</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>गिबि बेसेन ₹ <span class="hi">( असुर )</span></label>
+                <input type="number" class="asset-price" value="100" min="1" max="1000000">
+            </div>
+            <div class="input-group">
+                <label>रां खाथायनाय आदब <span class="hi">( नि )</span></label>
+                <select class="inv-mode">
+                    <option value="lumpsum">लम्पसम एकमुशत</option>
+                    <option value="sip">एस . आइ . पि हर महिनो ।</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label class="dynamic-inv-label">गुन । <span class="hi">( मात )</span></label>
+                <input type="number" class="inv-amount" value="50" min="1">
+                <div class="asset-total-cost" style="font-size: 0.8rem; margin-top: 4px; color: #1e40af; font-weight: 600;">
+                    गासै रां थिसनथाइ ₹<span class="cost-value">5000</span>
+                </div>
+            </div>
+        </div>
+        <div class="asset-analogy"></div>
+    </div>
+</template>
+
+<!-- Sidebar Tutorial Panel -->
+<div id="tour-panel">
+    <div id="tour-step-counter">12 नि 1 थि</div>
+    <div id="tour-text"></div>
+    <div class="tour-buttons">
+        <button id="btn-tour-skip" class="btn-tour-secondary">टिउटरियेलखौ फोजोब ।</button>
+        <button id="btn-tour-next" class="btn-tour-primary">उननि</button>
+    </div>
+</div>
+
+<script src="simulator.js?v=tour-i18n-20261004"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+# Nivesh web app + chatbot + fraud checker + speech/transcription + translation
+# Recommended on Windows: Python 3.12 (the full PyTorch stack does not currently
+# support Python 3.14 on Windows).
+
+# Web server and uploads
+fastapi>=0.109
+uvicorn[standard]>=0.27
+python-multipart>=0.0.6
+
+# Local model client and conversational retrieval
+ollama>=0.4
+langchain-core>=0.3
+langchain-community>=0.3
+langchain-ollama>=0.2
+langchain-text-splitters>=0.3
+langchain-huggingface>=0.1
+langchain-chroma>=0.2
+chromadb>=0.5
+sentence-transformers>=3.0
+huggingface-hub>=0.26
+
+# Vision model support for the optional Hugging Face Qwen-VL code paths
+torch>=2.2
+torchvision>=0.17
+transformers>=4.49
+accelerate>=0.26
+qwen-vl-utils>=0.0.8
+
+# PDF, image, ONNX translation and AI4Bharat speech models
+pdfplumber>=0.11
+pypdfium2>=4.30
+pillow>=10
+numpy>=1.26,<3
+onnxruntime>=1.17
+tokenizers>=0.15
+sentencepiece>=0.1.99
+sherpa-onnx>=1.12
+
+# Text-to-speech and microphone/audio utilities (the browser TTS also needs internet)
+gTTS>=2.5
+pygame>=2.5
+sounddevice>=0.4.6
+
+# Spreadsheet/data utilities used by the project’s data preparation scripts
+pandas>=2.0
+xlrd>=2.0.1
+openpyxl>=3.1
+python-docx>=1.1

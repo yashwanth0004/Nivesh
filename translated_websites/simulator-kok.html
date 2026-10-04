@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="kok">
+<head><base href="../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>निवेश सिम्युलेटर गुंतवणूकदार सुरक्षा साधन</title>
+    <link rel="stylesheet" href="simulator.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+
+<!-- Safety Disclaimer Banner -->
+<div id="disclaimer-banner">
+    🛡️ <strong>फकत शिक्षणीक साधन</strong> &nbsp;|&nbsp;
+    खरें पयशे आसना &nbsp;|&nbsp; अर्थीक सल्लो ना &nbsp;|&nbsp; दलाल वा टिपस्टर ना
+</div>
+
+<div id="simulator-container">
+    <header id="step-header">
+        <div class="header-left">
+            <h1>निवेश सिम्युलेटर</h1>
+            <span class="header-sub">गुंतवणूक परिणाम सिम्युलेटर</span>
+        </div>
+        <div class="header-right">
+            <button id="btn-lang" class="btn-lang">हिंदी</button>
+            <button id="btn-tutorial" class="btn-info">ट्युटोरियल सुरू कर</button>
+        </div>
+    </header>
+
+    <!-- Scenario Selector -->
+    <div class="section-box" id="step-scenario">
+        <h3 class="section-title">बाजार परिस्थिती निवड <span class="hi">बाजार परीद्रशण</span></h3>
+        <div class="scenario-cards">
+            <div class="scenario-card active" data-scenario="normal">
+                <div class="sc-icon">🟢</div>
+                <div class="sc-name">सामान्य बाजार</div>
+                <div class="sc-name-hi">सामो बाजार</div>
+                <div class="sc-risk low">उणो धोको</div>
+            </div>
+            <div class="scenario-card" data-scenario="crash">
+                <div class="sc-icon">📉</div>
+                <div class="sc-name">बाजारांत घसरण</div>
+                <div class="sc-name-hi">बाजार दुरगटा</div>
+                <div class="sc-risk high">चड धोको</div>
+            </div>
+            <div class="scenario-card" data-scenario="highvol">
+                <div class="sc-icon">⚡</div>
+                <div class="sc-name">चड अस्थिरता</div>
+                <div class="sc-name-hi">उच्च उत्तर - उत्तरेक</div>
+                <div class="sc-risk high">चड धोको</div>
+            </div>
+            <div class="scenario-card" data-scenario="fraud">
+                <div class="sc-icon">🚨</div>
+                <div class="sc-name">फसवणूक / घोटाळ</div>
+                <div class="sc-name-hi">धोखडी</div>
+                <div class="sc-risk extreme">खूब</div>
+            </div>
+            <div class="scenario-card" data-scenario="leverage">
+                <div class="sc-icon">⚠️</div>
+                <div class="sc-name">फायदो ( 2 )</div>
+                <div class="sc-name-hi">उत्तर से भविष्य</div>
+                <div class="sc-risk high">चड धोको</div>
+            </div>
+        </div>
+        <div id="scenario-desc" class="scenario-desc"></div>
+    </div>
+
+    <!-- Mode -->
+    <div class="mode-selector" id="step-mode">
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="single"> एकूच रणन<span class="hi">एक रणी</span>
+        </label>
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="compare" checked> दोन रणनितींची तुळा कर<span class="hi">दो रणी तुलेन</span>
+        </label>
+    </div>
+
+    <!-- Global Settings -->
+    <div class="global-settings section-box" id="step-global">
+        <div class="input-group">
+            <label>कॅपिटल <span class="hi">( कुल )</span></label>
+            <input type="number" id="total-capital" value="10000" min="100">
+            <small>गुंतवणूक करपाक वट्ट पयशे उपलब्ध आसात</small>
+        </div>
+        <div class="input-group" style="flex:1.5;">
+            <label>काळ <span class="hi">( अद )</span></label>
+            <div style="display:flex; gap:5px;">
+                <input type="number" id="sim-duration" value="2" min="1" max="1000" style="flex:1">
+                <select id="sim-duration-unit" style="flex:1">
+                    <option value="years">वर्सां</option>
+                    <option value="months">म्हयने</option>
+                    <option value="weeks">सप्तकां</option>
+                    <option value="days">दीस</option>
+                </select>
+            </div>
+            <small>अनुकरण करपाक कितलो वेळ</small>
+        </div>
+        <div class="input-group">
+            <label>पुनरावृत्ती <span class="hi">( पूर्ण )</span></label>
+            <input type="number" id="sim-iterations" value="20" min="1" max="100">
+            <small>पर्यायी बाजार विश्वांची संख्या</small>
+        </div>
+    </div>
+
+    <!-- Combinations -->
+    <div class="combinations-wrapper" id="step-combinations">
+        <div class="combination-card" id="comb-1-card">
+            <h2>संयोजन अ</h2>
+            <button class="btn-add" id="btn-add-c1">+ आभासी मालमत्ता जोडो</button>
+            <div id="c1-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                गुंतवणूक केल्लीः ₹<span id="c1-total-inv">0</span>
+                <div class="capital-left" id="c1-capital-left">उरिल्ले ₹10000</div>
+            </div>
+        </div>
+        <div class="combination-card" id="comb-2-card">
+            <h2>संयोजन ब</h2>
+            <button class="btn-add" id="btn-add-c2">+ आभासी मालमत्ता जोडो</button>
+            <div id="c2-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                गुंतवणूक केल्लीः ₹<span id="c2-total-inv">0</span>
+                <div class="capital-left" id="c2-capital-left">उरिल्ले ₹10000</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-section" id="step-run">
+        <button id="btn-run-sim" class="btn-primary">सिम्युलेशन चलोव</button>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" class="hidden">
+        <hr>
+        <h2 id="overall-title">एकंदर परिणाम सगळ्या पुनरावृत्ती सरासरी</h2>
+
+        <!-- Overall Area Chart -->
+        <div class="chart-box" id="overall-chart-box" style="margin-bottom:20px;">
+            <div class="chart-header">
+                <h3>बाजार मार्ग ( सगळ्या )</h3>
+                <button class="btn-expand" onclick="toggleExpand('overall-chart-box')">विस्तार</button>
+            </div>
+            <div id="chartOverall" class="chart-render-area" style="height:320px;"></div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div id="summary-cards" class="summary-cards-wrapper">
+            <div class="summary-card" id="summary-c1">
+                <h3>संयोजन अ</h3>
+                <p>एव्हजी निमाणो मोलः <strong>₹<span id="c1-overall-val">0</span></strong></p>
+                <p>वट्ट गुंतवणूकः ₹<span id="c1-tot-inv-res">0</span></p>
+                <p>सिम्युलेटेड रिटर्नः <span id="c1-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>फायद्याचें</span>
+                    <strong id="c1-profitable">0</strong><span>% पुनरावृत्तींत</span>
+                </div>
+            </div>
+            <div class="summary-card" id="summary-c2">
+                <h3>संयोजन ब</h3>
+                <p>एव्हजी निमाणो मोलः <strong>₹<span id="c2-overall-val">0</span></strong></p>
+                <p>वट्ट गुंतवणूकः ₹<span id="c2-tot-inv-res">0</span></p>
+                <p>सिम्युलेटेड रिटर्नः <span id="c2-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>फायद्याचें</span>
+                    <strong id="c2-profitable">0</strong><span>% पुनरावृत्तींत</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consequence Panel -->
+        <div id="consequence-panel" class="section-box" id="step-consequence">
+            <h3 class="section-title">परिणाम सारांशः सर्वोत्तम / वायट / सरासरी</h3>
+            <div class="consequence-grid">
+                <div class="con-header">परिणाम</div>
+                <div class="con-header">संयोजन अ</div>
+                <div class="con-header col-c2">संयोजन ब</div>
+
+                <div class="con-label">बेस्ट केस</div>
+                <div class="con-val best" id="con-best-a">—</div>
+                <div class="con-val best col-c2" id="con-best-b">—</div>
+
+                <div class="con-label">सरासरी</div>
+                <div class="con-val avg" id="con-avg-a">—</div>
+                <div class="con-val avg col-c2" id="con-avg-b">—</div>
+
+                <div class="con-label">सगळ्यांत वायट प्रकरण</div>
+                <div class="con-val worst" id="con-worst-a">—</div>
+                <div class="con-val worst col-c2" id="con-worst-b">—</div>
+
+                <div class="con-label">मॅक्स लॉस</div>
+                <div class="con-val worst" id="con-maxloss-a">—</div>
+                <div class="con-val worst col-c2" id="con-maxloss-b">—</div>
+            </div>
+        </div>
+
+        <!-- Guardrail-compliant conclusion -->
+        <div id="conclusion-box" class="conclusion-box hidden">
+            <h3>सिमुलेशन ऑब्झर्वेशन</h3>
+            <p id="conclusion-text"></p>
+            <p class="disclaimer-inline">हें एक अनुकरण आसा , अदमास न्हय . फाटल्या परिणाम फुडारीय पयशेंच थारावीक पयशे गुंतवणूक करपाखातीर सदांच सेबीतकायेन नेमतातार जाता जाल्यार सदांखातीर नेमतात</p>
+        </div>
+
+        <!-- Fraud Awareness Box -->
+        <div id="fraud-box" class="fraud-awareness-box hidden">
+            <h3>फसवणूक / घोटाळ्याची जागृती</h3>
+            <ul>
+                <li>🔴 <strong>हमी परतावो</strong> तांबड्या रंगाचो ध्वज . खंयचीच गुंतवणूक फायद्याची हमी ना</li>
+                <li>🔴 <strong>वेगान काम करपा खातीर दबाव</strong> ( आतां ) गुंतवणूक करची वा संद वगडावणी करप ही एक हातभोंडी चाल .</li>
+                <li>🔴 <strong>अज्ञात दलाल</strong> वा ओ . टी . पी / आधार मागपी . एप्स हे केन्नाच शेअर करचें ना</li>
+                <li>दलालाकडेन नोंदणीकृत आसा काय ना तें सदांच तपासात <strong>सेबी ( एसई . जी )</strong>.</li>
+                <li>फटींग केल्याचो अहवाल <strong>सेबी स्कोअर्स</strong> वा फोन कर <strong>राष्ट्रीय सायबर गुन्हे हेल्पलायनः 1930</strong>.</li>
+            </ul>
+        </div>
+
+        <hr>
+        <h2>डीप डायव्हः खाशेले पुनरावृत्ती सोद</h2>
+
+        <div class="iteration-selector" id="step-iteration">
+            <label for="chart-iteration-select"><strong>पुनरावृत्ती / पुनर्भृती चुनः</strong></label>
+            <select id="chart-iteration-select"></select>
+        </div>
+
+        <div class="charts-wrapper" id="step-charts">
+            <div class="chart-box" id="chart-a-box">
+                <div class="chart-header">
+                    <h3>एक मेणबत्ती</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-a-box')">विस्तार</button>
+                </div>
+                <div id="chartA" class="chart-render-area" style="height:350px;"></div>
+            </div>
+            <div class="chart-box" id="chart-b-box">
+                <div class="chart-header">
+                    <h3>कॉम्बिनेशन बी कॅंडलस्टीक</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-b-box')">विस्तार</button>
+                </div>
+                <div id="chartB" class="chart-render-area" style="height:350px;"></div>
+            </div>
+        </div>
+
+        <div class="periodic-table-container" id="step-table">
+            <h3>काळ - दर - सारांश ( निवडलेला )</h3>
+            <table id="periodic-table">
+                <thead>
+                    <tr>
+                        <th>काळ</th>
+                        <th>कोंब ए व्हॅल्यू</th>
+                        <th class="col-c2">कोंब बी व्हॅल्यू</th>
+                    </tr>
+                </thead>
+                <tbody id="periodic-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Asset Template -->
+<template id="asset-template">
+    <div class="asset-item">
+        <div class="asset-header">
+            <h4 class="asset-title">आभासी कंपनी</h4>
+            <div class="asset-header-right">
+                <span class="risk-badge"></span>
+                <button class="btn-remove">&times;</button>
+            </div>
+        </div>
+        <div class="asset-body">
+            <div class="input-group">
+                <label>मालमत्तेचो प्रकार <span class="hi">( पार )</span></label>
+                <select class="asset-type">
+                    <option value="stock">आभासी स्टॉक ( व्हर्च्युअल )</option>
+                    <option value="bond">आभासी बंध ( व्हर्च्युअल बॉन्ड )</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>सुरवातीचें मोल ₹ <span class="hi">( सुर )</span></label>
+                <input type="number" class="asset-price" value="100" min="1" max="1000000">
+            </div>
+            <div class="input-group">
+                <label>गुंतवणूक पद्दत <span class="hi">( नि )</span></label>
+                <select class="inv-mode">
+                    <option value="lumpsum">लुम्पसुमप्सम् एकमुशत</option>
+                    <option value="sip">एस . आय . पी . हर म्हणी</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label class="dynamic-inv-label">प्रमाणाचो <span class="hi">( मात )</span></label>
+                <input type="number" class="inv-amount" value="50" min="1">
+                <div class="asset-total-cost" style="font-size: 0.8rem; margin-top: 4px; color: #1e40af; font-weight: 600;">
+                    वट्ट गुंतवणूकः ₹<span class="cost-value">5000</span>
+                </div>
+            </div>
+        </div>
+        <div class="asset-analogy"></div>
+    </div>
+</template>
+
+<!-- Sidebar Tutorial Panel -->
+<div id="tour-panel">
+    <div id="tour-step-counter">12 पैकी 1 पावलां</div>
+    <div id="tour-text"></div>
+    <div class="tour-buttons">
+        <button id="btn-tour-skip" class="btn-tour-secondary">ट्युटोरिअल सोंप</button>
+        <button id="btn-tour-next" class="btn-tour-primary">फुडलो</button>
+    </div>
+</div>
+
+<script src="simulator.js?v=tour-i18n-20261004"></script>
+</body>
+</html>

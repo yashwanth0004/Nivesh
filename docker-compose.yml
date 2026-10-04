@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  unified-fraud-verifier:
+    build: .
+    container_name: unified_fraud_verifier
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./scam_database.db:/app/scam_database.db
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

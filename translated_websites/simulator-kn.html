@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head><base href="../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ನಿವೇಶ್ ಸಿಮ್ಯುಲೇಟರ್ ಹೂಡಿಕೆದಾರರ ಸುರಕ್ಷತಾ ಸಾಧನ</title>
+    <link rel="stylesheet" href="simulator.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+
+<!-- Safety Disclaimer Banner -->
+<div id="disclaimer-banner">
+    🛡️ <strong>ಶೈಕ್ಷಣಿಕ ಸಾಧನ ಮಾತ್ರ</strong> &nbsp;|&nbsp;
+    ಯಾವುದೇ ನೈಜ ಹಣ ಒಳಗೊಂಡಿಲ್ಲ &nbsp;|&nbsp; ಹಣಕಾಸಿನ ಸಲಹೆಯಿಲ್ಲ &nbsp;|&nbsp; ದಲ್ಲಾಳಿ ಅಥವಾ ಟಿಪ್ಸ್ಟರ್ ಅಲ್ಲ
+</div>
+
+<div id="simulator-container">
+    <header id="step-header">
+        <div class="header-left">
+            <h1>ನಿವೇಶ್ ಸಿಮ್ಯುಲೇಟರ್</h1>
+            <span class="header-sub">ಹೂಡಿಕೆ ಪರಿಣಾಮ ಸಿಮ್ಯುಲೇಟರ್</span>
+        </div>
+        <div class="header-right">
+            <button id="btn-lang" class="btn-lang">ಹಿಂದಿ</button>
+            <button id="btn-tutorial" class="btn-info">ಟ್ಯುಟೋರಿಯಲ್ ಅನ್ನು ಪ್ರಾರಂಭಿಸಿ</button>
+        </div>
+    </header>
+
+    <!-- Scenario Selector -->
+    <div class="section-box" id="step-scenario">
+        <h3 class="section-title">ಮಾರುಕಟ್ಟೆಯ ಸನ್ನಿವೇಶವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ <span class="hi">ಬಜಾರ್ ಪರಿಸ್ಥಿತಿ</span></h3>
+        <div class="scenario-cards">
+            <div class="scenario-card active" data-scenario="normal">
+                <div class="sc-icon">🟢</div>
+                <div class="sc-name">ಸಾಮಾನ್ಯ ಮಾರುಕಟ್ಟೆ</div>
+                <div class="sc-name-hi">ಸಮಾನ ಬಜಾರ್</div>
+                <div class="sc-risk low">ಕಡಿಮೆ ಅಪಾಯ</div>
+            </div>
+            <div class="scenario-card" data-scenario="crash">
+                <div class="sc-icon">📉</div>
+                <div class="sc-name">ಮಾರುಕಟ್ಟೆ ಕುಸಿತ</div>
+                <div class="sc-name-hi">ಬಜಾರ್ ದೂರ</div>
+                <div class="sc-risk high">ಹೆಚ್ಚಿನ ಅಪಾಯ</div>
+            </div>
+            <div class="scenario-card" data-scenario="highvol">
+                <div class="sc-icon">⚡</div>
+                <div class="sc-name">ಹೆಚ್ಚಿನ ಚಂಚಲತೆ</div>
+                <div class="sc-name-hi">ಉನ್ನತ ಉತ್ತರ</div>
+                <div class="sc-risk high">ಹೆಚ್ಚಿನ ಅಪಾಯ</div>
+            </div>
+            <div class="scenario-card" data-scenario="fraud">
+                <div class="sc-icon">🚨</div>
+                <div class="sc-name">ವಂಚನೆ / ಹಗರಣ</div>
+                <div class="sc-name-hi">ದೋಖಾದಿ</div>
+                <div class="sc-risk extreme">ಅತ್ಯ</div>
+            </div>
+            <div class="scenario-card" data-scenario="leverage">
+                <div class="sc-icon">⚠️</div>
+                <div class="sc-name">ಲಾಭ</div>
+                <div class="sc-name-hi">ಉತ್ತರದ ಹೊಸದು</div>
+                <div class="sc-risk high">ಹೆಚ್ಚಿನ ಅಪಾಯ</div>
+            </div>
+        </div>
+        <div id="scenario-desc" class="scenario-desc"></div>
+    </div>
+
+    <!-- Mode -->
+    <div class="mode-selector" id="step-mode">
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="single"> ಏಕ ಕಾರ್ಯತಂತ್ರ<span class="hi">ಒಂದು</span>
+        </label>
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="compare" checked> ಎರಡು ತಂತ್ರಗಳನ್ನು ಹೋಲಿಸಿ<span class="hi">ದೋ ರನ್ನಿಯೆಂದು</span>
+        </label>
+    </div>
+
+    <!-- Global Settings -->
+    <div class="global-settings section-box" id="step-global">
+        <div class="input-group">
+            <label>ಬಂಡವಾಳ <span class="hi">( ಕುಲ )</span></label>
+            <input type="number" id="total-capital" value="10000" min="100">
+            <small>ಹೂಡಿಕೆಗೆ ಲಭ್ಯವಿರುವ ಒಟ್ಟು ಹಣ</small>
+        </div>
+        <div class="input-group" style="flex:1.5;">
+            <label>ಅವಧಿ <span class="hi">( ಹೆಚ್ಚುವರಿಯಾಗಿ )</span></label>
+            <div style="display:flex; gap:5px;">
+                <input type="number" id="sim-duration" value="2" min="1" max="1000" style="flex:1">
+                <select id="sim-duration-unit" style="flex:1">
+                    <option value="years">ವರ್ಷಗಳು</option>
+                    <option value="months">ತಿಂಗಳುಗಳು</option>
+                    <option value="weeks">ವಾರಗಳು</option>
+                    <option value="days">ದಿನಗಳು</option>
+                </select>
+            </div>
+            <small>ಅನುಕರಣೆ ಮಾಡಲು ಎಷ್ಟು ಸಮಯ</small>
+        </div>
+        <div class="input-group">
+            <label>ಪುನರಾವರ್ತನೆಗಳು <span class="hi">( ಪೂರ್ಣ )</span></label>
+            <input type="number" id="sim-iterations" value="20" min="1" max="100">
+            <small>ಪರ್ಯಾಯ ಮಾರುಕಟ್ಟೆ ಬ್ರಹ್ಮಾಂಡಗಳ ಸಂಖ್ಯೆ</small>
+        </div>
+    </div>
+
+    <!-- Combinations -->
+    <div class="combinations-wrapper" id="step-combinations">
+        <div class="combination-card" id="comb-1-card">
+            <h2>ಎ ಸಂಯೋಜನೆ</h2>
+            <button class="btn-add" id="btn-add-c1">+ ವರ್ಚುವಲ್ ಆಸ್ತಿ ಸೇರಿಸಿ</button>
+            <div id="c1-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                ಹೂಡಿಕೆ ಮಾಡಿದ ₹<span id="c1-total-inv">0</span>
+                <div class="capital-left" id="c1-capital-left">ಉಳಿದ ₹10000</div>
+            </div>
+        </div>
+        <div class="combination-card" id="comb-2-card">
+            <h2>ಸಂಯೋಜನೆ ಬಿ</h2>
+            <button class="btn-add" id="btn-add-c2">+ ವರ್ಚುವಲ್ ಆಸ್ತಿ ಸೇರಿಸಿ</button>
+            <div id="c2-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                ಹೂಡಿಕೆ ಮಾಡಿದ ₹<span id="c2-total-inv">0</span>
+                <div class="capital-left" id="c2-capital-left">ಉಳಿದ ₹10000</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-section" id="step-run">
+        <button id="btn-run-sim" class="btn-primary">ರನ್ ಸಿಮ್ಯುಲೇಶನ್ ಚಾಲನೆಯಲ್ಲಿರುವ</button>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" class="hidden">
+        <hr>
+        <h2 id="overall-title">ಒಟ್ಟಾರೆ ಫಲಿತಾಂಶಗಳು ಎಲ್ಲಾ ಪುನರಾವರ್ತನೆಗಳ ಸರಾಸರಿ</h2>
+
+        <!-- Overall Area Chart -->
+        <div class="chart-box" id="overall-chart-box" style="margin-bottom:20px;">
+            <div class="chart-header">
+                <h3>ನಿರೀಕ್ಷಿತ ಮಾರುಕಟ್ಟೆ ಮಾರ್ಗ ( ಎಲ್ಲಾ ಪುನರಾವರ್ತನೆಗಳ ಸರಾಸರಿ )</h3>
+                <button class="btn-expand" onclick="toggleExpand('overall-chart-box')">ವಿಸ್ತರಿಸಿ</button>
+            </div>
+            <div id="chartOverall" class="chart-render-area" style="height:320px;"></div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div id="summary-cards" class="summary-cards-wrapper">
+            <div class="summary-card" id="summary-c1">
+                <h3>ಎ ಸಂಯೋಜನೆ</h3>
+                <p>ಎ . ವಿ ಅಂತಿಮ ಮೌಲ್ಯಃ <strong>₹<span id="c1-overall-val">0</span></strong></p>
+                <p>ಒಟ್ಟು ಹೂಡಿಕೆ ಮಾಡಿದ ₹<span id="c1-tot-inv-res">0</span></p>
+                <p>ಸಿಮ್ಯುಲೇಟೆಡ್ ರಿಟರ್ನ್ಃ <span id="c1-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>ಲಾಭದಾಯಕ</span>
+                    <strong id="c1-profitable">0</strong><span>% ಪುನರಾವರ್ತನೆಗಳಲ್ಲಿ</span>
+                </div>
+            </div>
+            <div class="summary-card" id="summary-c2">
+                <h3>ಸಂಯೋಜನೆ ಬಿ</h3>
+                <p>ಎ . ವಿ ಅಂತಿಮ ಮೌಲ್ಯಃ <strong>₹<span id="c2-overall-val">0</span></strong></p>
+                <p>ಒಟ್ಟು ಹೂಡಿಕೆ ಮಾಡಿದ ₹<span id="c2-tot-inv-res">0</span></p>
+                <p>ಸಿಮ್ಯುಲೇಟೆಡ್ ರಿಟರ್ನ್ಃ <span id="c2-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>ಲಾಭದಾಯಕ</span>
+                    <strong id="c2-profitable">0</strong><span>% ಪುನರಾವರ್ತನೆಗಳಲ್ಲಿ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consequence Panel -->
+        <div id="consequence-panel" class="section-box" id="step-consequence">
+            <h3 class="section-title">ಪರಿಣಾಮದ ಸಾರಾಂಶಃ ಅತ್ಯುತ್ತಮ / ಕೆಟ್ಟ ಫಲಿತಾಂಶಗಳು</h3>
+            <div class="consequence-grid">
+                <div class="con-header">ಫಲಿತಾಂಶ</div>
+                <div class="con-header">ಸಂಯೋಜನೆ ಎ</div>
+                <div class="con-header col-c2">ಸಂಯೋಜನೆ ಬಿ</div>
+
+                <div class="con-label">ಅತ್ಯುತ್ತಮ ಪ್ರಕರಣ</div>
+                <div class="con-val best" id="con-best-a">—</div>
+                <div class="con-val best col-c2" id="con-best-b">—</div>
+
+                <div class="con-label">ಸರಾಸರಿ</div>
+                <div class="con-val avg" id="con-avg-a">—</div>
+                <div class="con-val avg col-c2" id="con-avg-b">—</div>
+
+                <div class="con-label">ಅತ್ಯಂತ ಕೆಟ್ಟ ಪ್ರಕರಣ</div>
+                <div class="con-val worst" id="con-worst-a">—</div>
+                <div class="con-val worst col-c2" id="con-worst-b">—</div>
+
+                <div class="con-label">ಗರಿಷ್ಠ ನಷ್ಟ</div>
+                <div class="con-val worst" id="con-maxloss-a">—</div>
+                <div class="con-val worst col-c2" id="con-maxloss-b">—</div>
+            </div>
+        </div>
+
+        <!-- Guardrail-compliant conclusion -->
+        <div id="conclusion-box" class="conclusion-box hidden">
+            <h3>ಅನುಕರಣೆ ಅವಲೋಕನ</h3>
+            <p id="conclusion-text"></p>
+            <p class="disclaimer-inline">ಇದು ಒಂದು ಊಹೆಯಲ್ಲ . ಹಿಂದಿನ ಅನುಕರಣೆಯ ಫಲಿತಾಂಶವು ಭವಿಷ್ಯದ ಭವಿಷ್ಯವಾಣಿಯಾಗಿದೆ , ಆದರೆ ನೈಜ ಹಣವನ್ನು ಹೂಡಿಕೆ ಮಾಡುವ ಮೊದಲು ಯಾವಾಗಲೂ ಸೆಬಿಡಿಃ</p>
+        </div>
+
+        <!-- Fraud Awareness Box -->
+        <div id="fraud-box" class="fraud-awareness-box hidden">
+            <h3>ವಂಚನೆ / ಹಗರಣ ಜಾಗೃತಿ</h3>
+            <ul>
+                <li>🔴 <strong>ಖಾತರಿ</strong> ಇದು ಕೆಂಪು ಧ್ವಜ . ಯಾವುದೇ ಹೂಡಿಕೆಯು ಲಾಭದ ಖಾತರಿ ನೀಡುವುದಿಲ್ಲ</li>
+                <li>🔴 <strong>ತ್ವರಿತವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸಲು ಒತ್ತಡ</strong> ( ಈಗ ) ಹೂಡಿಕೆ ಮಾಡಿ ಅಥವಾ ಅವಕಾಶವನ್ನು ಕಳೆದುಕೊಳ್ಳುವುದು ಒಂದು ಕುಶಲತೆಯ ತಂತ್ರವಾಗಿದೆ .</li>
+                <li>🔴 <strong>ಅಪರಿಚಿತ ದಲ್ಲಾಳಿಗಳು</strong> ಅಥವಾ ಒಟಿಪಿ / ಆಧಾರ್ನ ಅಪ್ಲಿಕೇಶನ್ಗಳನ್ನು ಕೇಳುವ ಆಪ್ಗಳು ಇವು ಎಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳುವುದಿಲ್ಲ .</li>
+                <li>ದಲ್ಲಾಳಿಯು ನೋಂದಾಯಿಸಿಕೊಂಡಿದ್ದಾನೆಯೇ ಎಂಬುದನ್ನು ಯಾವಾಗಲೂ ಪರಿಶೀಲಿಸಿ <strong>ಸೆಬಿ ( SEBI . gov )</strong>.</li>
+                <li>ವಂಚನೆ ವರದಿ ಮಾಡಿ <strong>ಸೆಬಿ ಸ್ಕೋರ್</strong> ಅಥವಾ ಕರೆ <strong>ರಾಷ್ಟ್ರೀಯ ಸೈಬರ್ ಅಪರಾಧ ಸಹಾಯವಾಣಿಃ 1930</strong>.</li>
+            </ul>
+        </div>
+
+        <hr>
+        <h2>ಡೀಪ್ ಡೈವ್ಃ ನಿರ್ದಿಷ್ಟ ಪುನರಾವರ್ತನೆಗಳನ್ನು ಅನ್ವೇಷಿಸಿ</h2>
+
+        <div class="iteration-selector" id="step-iteration">
+            <label for="chart-iteration-select"><strong>ಪುನರಾವರ್ತನೆ / ಪುನಾರಚನೆ ಆಯ್ಕೆಮಾಡಿಃ</strong></label>
+            <select id="chart-iteration-select"></select>
+        </div>
+
+        <div class="charts-wrapper" id="step-charts">
+            <div class="chart-box" id="chart-a-box">
+                <div class="chart-header">
+                    <h3>ಕಾಂಬಿನೇಶನ್ ಎ ಕ್ಯಾಂಡಲ್ ಸ್ಟಿಕ್</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-a-box')">ವಿಸ್ತರಿಸಿ</button>
+                </div>
+                <div id="chartA" class="chart-render-area" style="height:350px;"></div>
+            </div>
+            <div class="chart-box" id="chart-b-box">
+                <div class="chart-header">
+                    <h3>ಕಾಂಬಿನೇಷನ್ ಬಿ ಕ್ಯಾಂಡಲ್ ಸ್ಟಿಕ್</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-b-box')">ವಿಸ್ತರಿಸಿ</button>
+                </div>
+                <div id="chartB" class="chart-render-area" style="height:350px;"></div>
+            </div>
+        </div>
+
+        <div class="periodic-table-container" id="step-table">
+            <h3>ಅವಧಿಯ ಸಾರಾಂಶ ( ಆಯ್ದ ಪುನರಾವರ್ತನೆ )</h3>
+            <table id="periodic-table">
+                <thead>
+                    <tr>
+                        <th>ಅವಧಿ</th>
+                        <th>ಒಂದು ಮೌಲ್ಯವನ್ನು ಜೋಡಿಸಿ</th>
+                        <th class="col-c2">ಕಾಂಬ್ ಬಿ ಮೌಲ್ಯ</th>
+                    </tr>
+                </thead>
+                <tbody id="periodic-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Asset Template -->
+<template id="asset-template">
+    <div class="asset-item">
+        <div class="asset-header">
+            <h4 class="asset-title">ವರ್ಚುವಲ್ ಕಂಪನಿ</h4>
+            <div class="asset-header-right">
+                <span class="risk-badge"></span>
+                <button class="btn-remove">&times;</button>
+            </div>
+        </div>
+        <div class="asset-body">
+            <div class="input-group">
+                <label>ಆಸ್ತಿಯ ಪ್ರಕಾರ <span class="hi">( ಪಾರ್ಕರ್ )</span></label>
+                <select class="asset-type">
+                    <option value="stock">ವರ್ಚುವಲ್ ಸ್ಟಾಕ್ ( ಹೈ ರಿಸ್ಕ್ )</option>
+                    <option value="bond">ವರ್ಚುವಲ್ ಬಾಂಡ್ ( ಕಡಿಮೆ ಅಪಾಯ )</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>ಆರಂಭಿಕ ಬೆಲೆ ₹ <span class="hi">( ಶುಕ್ರವಾರ )</span></label>
+                <input type="number" class="asset-price" value="100" min="1" max="1000000">
+            </div>
+            <div class="input-group">
+                <label>ಹೂಡಿಕೆ ವಿಧಾನ <span class="hi">( ನೀವ್ )</span></label>
+                <select class="inv-mode">
+                    <option value="lumpsum">ಲಂಪಸ್ ಏಕಮುಷ್</option>
+                    <option value="sip">ಸಿಪ್ ಹರ್ ಮೆಹೆರ್</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label class="dynamic-inv-label">ಪ್ರಮಾಣ <span class="hi">( ಮಾತ )</span></label>
+                <input type="number" class="inv-amount" value="50" min="1">
+                <div class="asset-total-cost" style="font-size: 0.8rem; margin-top: 4px; color: #1e40af; font-weight: 600;">
+                    ಒಟ್ಟು ಹೂಡಿಕೆಃ ₹<span class="cost-value">5000</span>
+                </div>
+            </div>
+        </div>
+        <div class="asset-analogy"></div>
+    </div>
+</template>
+
+<!-- Sidebar Tutorial Panel -->
+<div id="tour-panel">
+    <div id="tour-step-counter">12ರ ಹಂತ 1</div>
+    <div id="tour-text"></div>
+    <div class="tour-buttons">
+        <button id="btn-tour-skip" class="btn-tour-secondary">ಅಂತಿಮ ಪಾಠ</button>
+        <button id="btn-tour-next" class="btn-tour-primary">ಮುಂದಿನದು</button>
+    </div>
+</div>
+
+<script src="simulator.js?v=tour-i18n-20261004"></script>
+</body>
+</html>

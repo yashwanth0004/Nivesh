@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="as">
+<head><base href="../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ছেবিৰা বিত্তীয় জালিয়াতি & কেলেঙ্কৰা চিনাক্তকৰী</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Navigation / Header -->
+    <header class="border-b border-gray-800 py-4 px-6 flex justify-between items-center bg-gray-900/50 backdrop-blur">
+        <div class="flex items-center space-x-2">
+            <span class="text-xl">🛡️</span>
+            <span class="font-bold text-lg text-white">জালিয়াতি চিনাক্তকৰণ আৰু ছেবি এজেণ্ট</span>
+        </div>
+        <select id="fraudLanguage" class="rounded-lg border border-gray-700 bg-gray-950 px-3 py-2 text-sm text-gray-200" aria-label="Website language"><option value="en">English</option><option value="as">অসমীয়া — Assamese</option><option value="bn">বাংলা — Bengali</option><option value="brx">बड़ो — Bodo</option><option value="doi">डोगरी — Dogri</option><option value="gu">ગુજરાતી — Gujarati</option><option value="hi">हिन्दी — Hindi</option><option value="kn">ಕನ್ನಡ — Kannada</option><option value="ks">کشمیરી — Kashmiri</option><option value="kok">कोंकणी — Konkani</option><option value="mai">मैथिली — Maithili</option><option value="ml">മലയാളം — Malayalam</option><option value="mni">মৈতৈলোন্ — Manipuri</option><option value="mr">मराठी — Marathi</option><option value="ne">नेपाली — Nepali</option><option value="or">ଓଡ଼ିଆ — Odia</option><option value="pa">ਪੰਜਾਬੀ — Punjabi</option><option value="sa">संस्कृतम् — Sanskrit</option><option value="sat">ᱥᱟᱱᱛᱟᲲᱤ — Santali</option><option value="sd">سنڌي — Sindhi</option><option value="ta">தமிழ் — Tamil</option><option value="te">తెలుగు — Telugu</option><option value="ur">اردو — Urdu</option></select><a href="/" class="text-sm text-gray-400 hover:text-white transition">ডেশ্ববৰ্ডলৈ ঘূৰ্ড কৰ্টক</a>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-3xl w-full mx-auto px-4 py-10">
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl p-8">
+            <h1 class="text-2xl font-bold mb-2 text-white">বিত্তীয় দাবী আৰু ছেবি অডিট এজেণ্ট</h1>
+            <p class="text-gray-400 text-sm mb-3">ছেবি পঞ্জীয়নৰিনশ্বটছ ' ট্ৰেন্সটপ টেক্সট " ৰ পৰ চেইষ্ট কৰেপ্ৰ আৰ চেক কৰ্ছ ইনভেষ্টিক্ৰেচন - প্ৰ্চ এণ্ড লিংকসমূহ ৤</p>
+            <p class="text-emerald-300 text-xs mb-5">বাৰ্তা লিখনি প্ৰৱেশ কৰ সৈতে / ছবি আপলোড কৰ পাঠ সুমুৱা ৤</p>
+            <p class="text-amber-300 text-xs mb-8">স্ক্ৰীণশ্বট আৰু স্কেন কৰি ৰেডিং - পিডিএফত স্থানীয় কিউৱে ' ল ব্যৱেলছ 3 - ভিএলঃ8বি .</p>
+
+            <!-- Fraud Detection Form -->
+            <form id="agentAuditForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-gray-300">বাৰ্তা / চেনেল টেক্সট</label>
+                    <textarea id="agentInputText" rows="3" class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-white focus:ring-2 focus:ring-emerald-400 focus:outline-none text-sm" placeholder="e.g. Join official channel! Reg: INZ000031633. Guaranteed 200% monthly profit!"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-gray-300">নাম / ব্যৱহাৰকাৰীনাম প্ৰ কৰকৰা সামাজিক পৰণ দেখুওৱাহক নামটো ( বিকল্প )</label>
+                    <input type="text" id="agentClaimedUsername" class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-white focus:ring-2 focus:ring-emerald-400 focus:outline-none text-sm" placeholder="e.g. Axis Securities Ltd, Rajiv Kejriwal, AJCON Global Services, or @somehandle">
+                    <p class="text-xs text-gray-500 mt-2">এটা কোম্পানীৰ নাম ইয়াৰ সামাজিক হাতলখনৰ চেবিশিষ্ট ৰেকর্ড হিচাপে পৰ সৈতে মিল থাকে ৤</p>
+                </div>
+
+                <div class="rounded-xl border border-gray-800 bg-gray-950/70 p-4 space-y-3">
+                    <label for="agentVoiceLanguage" class="block text-sm font-medium text-gray-300">কণ্ঠ বাৰ্তাত কি ভাষা কোৱা হয়</label>
+                    <select id="agentVoiceLanguage" class="w-full bg-gray-950 border border-gray-800 rounded-xl p-3 text-white focus:ring-2 focus:ring-emerald-400 focus:outline-none text-sm">
+                <option value="en">English</option><option value="as">অসমীয়া — Assamese</option><option value="bn">বাংলা — Bengali</option>
+                <option value="brx">बड़ो — Bodo</option><option value="doi">डोगरी — Dogri</option><option value="gu">ગુજરાતી — Gujarati</option>
+                <option value="hi">हिन्दी — Hindi</option><option value="kn">ಕನ್ನಡ — Kannada</option><option value="ks">کشمیری — Kashmiri</option>
+                <option value="kok">कोंकणी — Konkani</option><option value="mai">मैथिली — Maithili</option><option value="ml">മലയാളം — Malayalam</option>
+                <option value="mni">মৈতৈলোন্ — Manipuri</option><option value="mr">मराठी — Marathi</option><option value="ne">नेपाली — Nepali</option>
+                <option value="or">ଓଡ଼ିଆ — Odia</option><option value="pa">ਪੰਜਾਬੀ — Punjabi</option><option value="sa">संस्कृतम् — Sanskrit</option>
+                <option value="sat">ᱥᱟᱱᱛᱟᱲᱤ — Santali</option><option value="sd">سنڌي — Sindhi</option><option value="ta">தமிழ் — Tamil</option>
+                <option value="te">తెలుగు — Telugu</option><option value="ur">اردو — Urdu</option>
+            </select>
+                    <label for="agentVoiceFile" class="block text-sm font-medium text-gray-300">এটা ভইচ ৰেকৰ্ডিং বাছনি কৰ্ডিঙ ( 25 এমবি )</label>
+                    <input type="file" id="agentVoiceFile" accept="audio/*,.m4a,.mp3,.wav,.ogg,.webm,.mp4" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-emerald-400 file:text-gray-950 hover:file:bg-emerald-300 cursor-pointer transition">
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <span id="agentVoiceStatus" class="text-xs text-gray-500">প্ৰথমে কথিত ভাষাটো বাছনি কৰে ৤ ৰেক " টেষ্ট . পাই ' টাইপেক্টিংখন স্থানীয়ভাৱা হ " এ আই4 ভাৰ সৈতে ট্ৰেটত মডেল হিচাপে পৰ্টেলচ আৰ দ্বাৰ জিকেচন হয়</span>
+                        <button type="button" id="agentTranscribeVoice" class="rounded-lg bg-gray-800 px-4 py-2 text-xs font-semibold text-emerald-300 hover:bg-gray-700 disabled:opacity-50">বাৰ্তাত লিখক আৰু যোগ কৰ্ক</button>
+                    </div>
+                    <p class="text-xs text-gray-500">এই প্রতিলিপিটো বাৰ্তা / চেনেল টেক্সটত যোগ কৰ সৈতে সংযোগ দিয়া হয় ৤ তাৰ পুনৰ পৰ পিছত জালিয়াত প্ৰ অডিট চলোৱে আৰ সম্পাদনা কৰ বাবে ইংৰি কৰণ কৰা হিন্দী - তৰীখন মডেল উপলব্ধ আছে</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-gray-300">এটা স্ক্ৰীণশ্বট ছবি বা পিডিএফ ( 25 এমবি ) আপলোড কৰ বাবে অপ্ট</label>
+                    <input type="file" id="agentScreenshot" accept="image/png,image/jpeg,image/webp,image/bmp,application/pdf,.pdf" class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-emerald-400 file:text-gray-950 hover:file:bg-emerald-300 cursor-pointer transition">
+                    <div class="mt-2 flex items-center justify-between gap-3">
+                        <span id="agentFileStatus" class="text-xs text-gray-500">আপুনি ইয়াত এটা ছবি Ctrl+V ৰ সৈতেও পেস্ট কৰিব পাৰে ৤</span>
+                        <button type="button" id="agentClearFile" class="hidden text-xs text-red-300 hover:text-red-200 underline">নিৰ্বাচিত ফাইল আঁতৰাওক</button>
+                    </div>
+                </div>
+
+                <p id="agentInputError" class="hidden text-sm text-red-300" role="alert">অডিট চলোৱলম্বন কৰাৰ আগতে বা ছবি অথবা পিডিএফ বাছনি কৰ লিখনি প্ৰ পৰ বাবে এটা শব্দ যোগ দিয়া ৤</p>
+
+                <button type="submit" id="agentSubmitBtn" class="w-full bg-emerald-400 hover:bg-emerald-300 text-gray-950 font-bold py-3 px-4 rounded-xl transition duration-200 shadow-lg text-sm flex items-center justify-center space-x-2">
+                    <span>জালিয়াতি অডিট চলোৱা</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </form>
+
+            <!-- Results Section (Hidden by Default) -->
+            <div id="agentResults" class="mt-8 hidden border-t border-gray-800 pt-6 space-y-4">
+                <h2 class="text-lg font-bold text-white">অডিট ৰিডিক্টঃ</h2>
+                <div id="agentOverallBadge" class="p-4 rounded-xl font-bold text-center text-sm"></div>
+                <section id="scoresComplaintPreview" class="hidden rounded-xl border border-gray-300 bg-gray-200 p-3 text-gray-900">
+                    <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+                        <h3 class="font-bold text-gray-900">ইংৰাজী অভিযোগ নথিপত্ৰৰ পূৰাজী প্ৰাধিকাৰ</h3>
+                        <button type="button" id="downloadScoresDraft" class="rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-gray-950 hover:bg-emerald-400">. docx ডাউনলোড কৰক</button>
+                    </div>
+                    <p class="mb-3 text-xs text-gray-700">এইটো কেৱল ইংৰাজী সম্পাদনাযোগ্য খচৰা ৤ ইয়াক পুনৰে খালী ক্ষেত্ৰ পৰণ কৰে সম্পূৰণেৰে পূৰেখন স্থানসমূহ সম্পূর্ণক যিকোনো সময়তে পুনঃনি ডাউনলোড কৰি ল ' ৰাখনেৰেৰেৰেৰেৰেৰেৰেৰে মূল প্ৰে</p>
+                    <article id="scoresComplaintContent" class="mx-auto max-w-[760px] border border-gray-300 bg-white px-8 py-10 shadow-sm"></article>
+                </section>
+                <section class="bg-gray-950 p-4 rounded-xl border border-gray-800">
+                    <h3 class="font-semibold text-emerald-400 text-sm mb-2">দস্তাবেজৰ সংক্ষিপ্ত বিৱৰণ আৰু এআই ফলাফল</h3>
+                    <div id="agentDocumentSummary" class="text-sm whitespace-pre-wrap text-gray-300"></div>
+                </section>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gray-950 p-4 rounded-xl border border-gray-800">
+                        <h3 class="font-semibold text-emerald-400 text-sm mb-2">প্ৰক্ৰিয়া 1:ছেবিধান কৰমা</h3>
+                        <div id="agentP1Result" class="text-xs space-y-1.5 text-gray-300"></div>
+                    </div>
+                    <div class="bg-gray-950 p-4 rounded-xl border border-gray-800">
+                        <h3 class="font-semibold text-emerald-400 text-sm mb-2">প্ৰক্ৰিয়া 2 : বিপদাশংকা আৰান্ত &amp; পি .</h3>
+                        <div id="agentP2Result" class="text-xs space-y-1.5 text-gray-300"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-gray-500 border-t border-gray-900">
+        qwen3 - vl:8b / SEBI পঞ্জীয়ন ৰেৰ দ্বাৰ পৰৱর্তী নথিভুক্ত কৰ নথিপত্বাৰ আৰণ তথা প্ৰ্তাৱদ্ধমান ভিত্তিক বিপদাশোষণ নিয়মসমূহ
+    </footer>
+
+    <!-- The main website starts the fraud API and AI models at launch. -->
+    <script>
+        const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+        const fraudLanguage=document.getElementById('fraudLanguage');if(fraudLanguage){fraudLanguage.value=document.documentElement.lang||'en';fraudLanguage.addEventListener('change',()=>{const language=fraudLanguage.value;localStorage.setItem('nivesh-language',language);document.cookie=`nivesh_lang=${encodeURIComponent(language)}; Path=/; SameSite=Lax`;location.href=`/language/${encodeURIComponent(language)}/fraud-detector.html`;});}
+        const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+        const fileField = document.getElementById('agentScreenshot');
+        const clearFileButton = document.getElementById('agentClearFile');
+        const fileStatus = document.getElementById('agentFileStatus');
+        const voiceFileField = document.getElementById('agentVoiceFile');
+        const voiceStatus = document.getElementById('agentVoiceStatus');
+        const transcribeVoiceButton = document.getElementById('agentTranscribeVoice');
+        let latestAuditForReport = null;
+
+        function makeMonoWav(audioBuffer, sampleRate = 16000) {
+            const targetLength = Math.ceil(audioBuffer.length * sampleRate / audioBuffer.sampleRate);
+            const channels = Array.from({length: audioBuffer.numberOfChannels}, (_, index) => audioBuffer.getChannelData(index));
+            const pcm = new Int16Array(targetLength);
+            for (let i = 0; i < targetLength; i++) {
+                const sourcePosition = i * audioBuffer.sampleRate / sampleRate;
+                const left = Math.floor(sourcePosition);
+                const mix = Math.min(1, sourcePosition - left);
+                let sample = 0;
+                for (const channel of channels) {
+                    const first = channel[Math.min(left, channel.length - 1)] || 0;
+                    const second = channel[Math.min(left + 1, channel.length - 1)] || 0;
+                    sample += first + (second - first) * mix;
+                }
+                sample /= channels.length || 1;
+                pcm[i] = Math.max(-32768, Math.min(32767, Math.round(sample < 0 ? sample * 32768 : sample * 32767)));
+            }
+
+            const wav = new ArrayBuffer(44 + pcm.byteLength);
+            const view = new DataView(wav);
+            const writeTag = (offset, text) => [...text].forEach((char, index) => view.setUint8(offset + index, char.charCodeAt(0)));
+            writeTag(0, 'RIFF');
+            view.setUint32(4, 36 + pcm.byteLength, true);
+            writeTag(8, 'WAVE');
+            writeTag(12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);
+            view.setUint16(22, 1, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * 2, true);
+            view.setUint16(32, 2, true);
+            view.setUint16(34, 16, true);
+            writeTag(36, 'data');
+            view.setUint32(40, pcm.byteLength, true);
+            new Int16Array(wav, 44).set(pcm);
+            return new Blob([wav], {type: 'audio/wav'});
+        }
+
+        async function redirectToActiveWebsite() {
+            try {
+                const response = await fetch(`/nivesh-active-server.json?check=${Date.now()}`, {cache: 'no-store'});
+                if (!response.ok) return false;
+                const active = await response.json();
+                const target = new URL(active.url);
+                if (!['127.0.0.1', 'localhost', '[::1]', '::1'].includes(target.hostname) || target.origin === location.origin) return false;
+                const destination = new URL(`${location.pathname}${location.search}${location.hash}`, target);
+                voiceStatus.textContent = `This tab is using an older server. Opening the current website at ${target.origin}…`;
+                location.replace(destination.href);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        // If this page was opened from an older local server, move to the
+        // current launch immediately instead of waiting for an upload attempt.
+        redirectToActiveWebsite();
+
+        voiceFileField.addEventListener('change', () => {
+            const recording = voiceFileField.files[0];
+            voiceStatus.classList.remove('text-red-300');
+            voiceStatus.textContent = recording ? `Selected: ${recording.name}. Choose the spoken language above, then transcribe.` : 'Select the spoken language first. The recording will be transcribed locally with the AI4Bharat model used by test.py.';
+        });
+
+        transcribeVoiceButton.addEventListener('click', async () => {
+            const recording = voiceFileField.files[0];
+            const language = document.getElementById('agentVoiceLanguage').value;
+            const languageName = document.getElementById('agentVoiceLanguage').selectedOptions[0]?.textContent || language;
+            if (!recording) {
+                voiceStatus.textContent = 'Choose a voice recording first.';
+                voiceStatus.classList.add('text-red-300');
+                return;
+            }
+            if (recording.size > 25 * 1024 * 1024) {
+                voiceStatus.textContent = 'Choose a recording smaller than 25 MB.';
+                voiceStatus.classList.add('text-red-300');
+                return;
+            }
+
+            transcribeVoiceButton.disabled = true;
+            voiceStatus.classList.remove('text-red-300');
+            voiceStatus.textContent = 'Preparing audio for AI4Bharat transcription…';
+            try {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContextClass) throw new Error('This browser cannot decode audio files. Try a recent Chrome or Edge browser.');
+                const audioContext = new AudioContextClass();
+                let decoded;
+                try {
+                    decoded = await audioContext.decodeAudioData(await recording.arrayBuffer());
+                } finally {
+                    await audioContext.close().catch(() => {});
+                }
+                if (!decoded.length) throw new Error('No sound could be read from this recording.');
+                const wav = makeMonoWav(decoded);
+                if (wav.size > 25 * 1024 * 1024) throw new Error('The converted recording is over 25 MB. Please choose a shorter voice message.');
+
+                voiceStatus.textContent = 'Waiting for the local speech model…';
+                await waitForFraudBackend(transcribeVoiceButton);
+                transcribeVoiceButton.textContent = 'Transcribing…';
+                voiceStatus.textContent = `Transcribing in ${languageName} with the local AI4Bharat model…`;
+                const formData = new FormData();
+                formData.append('language', language);
+                formData.append('audio', wav, 'voice-message.wav');
+                const response = await fetch('/api/v1/transcribe-voice', {method: 'POST', body: formData});
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok) {
+                    const serverMessage = String(data.detail || data.error || '');
+                    const outdatedServer = /utf-8.*decode|codec can't decode|unknown endpoint|invalid json/i.test(serverMessage);
+                    if (await redirectToActiveWebsite()) return;
+                    throw new Error(outdatedServer
+                        ? 'This page reached an older website server that cannot forward voice uploads. Run python setup_and_run.py from the project folder and open the CURRENT WEBSITE URL printed in Terminal.'
+                        : (serverMessage || (response.status === 400 ? 'The website server rejected this audio upload. Restart it with python setup_and_run.py, then reload this page.' : `Transcription failed (HTTP ${response.status}).`)));
+                }
+                if (!data.text?.trim()) throw new Error('No words were recognized. Check the language selection and recording, then try again.');
+
+                const messageBox = document.getElementById('agentInputText');
+                const voiceText = `[Voice message transcription — ${languageName}]\n${data.text.trim()}`;
+                messageBox.value = messageBox.value.trim() ? `${messageBox.value.trim()}\n\n${voiceText}` : voiceText;
+                messageBox.focus();
+                voiceStatus.textContent = `Added ${languageName} transcript to Message / Channel Text. Review it before running the audit.`;
+            } catch (error) {
+                voiceStatus.textContent = error.message || 'Could not transcribe the voice recording.';
+                voiceStatus.classList.add('text-red-300');
+            } finally {
+                transcribeVoiceButton.disabled = false;
+                transcribeVoiceButton.textContent = 'Transcribe and add to message';
+            }
+        });
+
+        function englishReportValue(value, fallback = 'Refer to the original evidence for the exact text.') {
+            if (value === null || value === undefined || typeof value === 'object') {
+                if (Array.isArray(value)) value = value.join('; ');
+                else return fallback;
+            }
+            let text = String(value).trim()
+                .replace(/₹/g, 'INR ')
+                .replace(/[–—]/g, '-')
+                .replace(/[’‘]/g, "'")
+                .replace(/[“”]/g, '"')
+                .replace(/[•·]/g, '-')
+                .replace(/[×]/g, 'x')
+                .replace(/[🔴🟢🟡⚠️📄]/g, '')
+                .replace(/\uFE0F/g, '')
+                .trim();
+            return text && /^[\x20-\x7E\r\n\t]*$/.test(text) ? text : fallback;
+        }
+
+        function reportList(value) {
+            return Array.isArray(value) ? value : (value ? [value] : []);
+        }
+
+        function buildComplaintItems(payload) {
+            const audit = payload?.audit || {};
+            const analysis = audit.document_analysis || {};
+            const p1 = audit.process_1_sebi || {};
+            const p2 = audit.process_2_risk_audit || {};
+            const registrationChecks = reportList(p1.registration_checks).filter(item => item && typeof item === 'object');
+            const nameChecks = reportList(p1.name_checks).filter(item => item && typeof item === 'object');
+            const usernameChecks = reportList(p1.username_checks).filter(item => item && typeof item === 'object');
+            const urlChecks = reportList(p1.urls_checked).filter(item => item && typeof item === 'object');
+            const items = [];
+            const add = (text, style = 'Normal') => items.push({ text: String(text || ''), style });
+            const bullet = text => add(`- ${text}`);
+            const englishItems = values => reportList(values).map(value => englishReportValue(value)).filter(value => value && value !== 'Refer to the original evidence for the exact text.');
+            const extractedIds = englishItems(analysis.sebi_registration_numbers);
+            const ids = [...new Set([...extractedIds, ...registrationChecks.map(check => englishReportValue(check.sebi_number, '')).filter(Boolean)])];
+            if (!ids.length && englishReportValue(p1.sebi_number, '') && p1.sebi_number !== 'None Found') ids.push(englishReportValue(p1.sebi_number));
+            const names = englishItems(analysis.registered_company_names);
+            const rawUrls = englishItems(analysis.urls);
+            const urlSet = new Set([...rawUrls, ...urlChecks.map(check => englishReportValue(check.url, '')).filter(Boolean)]);
+            const englishSummary = englishReportValue(analysis.document_summary || audit.ai_summary, '');
+            const flags = [...new Set([
+                ...englishItems(analysis.red_flags),
+                ...englishItems(p1.red_flags),
+                ...englishItems(p2.detected_flags),
+                ...englishItems(analysis.visual_anomalies)
+            ])];
+            const stamp = new Date();
+            const generatedAt = `${stamp.getFullYear()}-${String(stamp.getMonth() + 1).padStart(2, '0')}-${String(stamp.getDate()).padStart(2, '0')} ${String(stamp.getHours()).padStart(2, '0')}:${String(stamp.getMinutes()).padStart(2, '0')}`;
+
+            add('DRAFT - INVESTOR GRIEVANCE / SUSPECTED IMPERSONATION REPORT', 'Title');
+            add(`English version | Prepared ${generatedAt}`);
+            add('IMPORTANT: This is an editable factual draft, not legal advice, a legal notice, or a finding that anyone committed fraud. A HIGH RISK score is an automated screening signal only. Check every fact against the original evidence, correct errors, and remove anything you cannot personally support before filing.');
+            add('1. Reporter and case details', 'Heading1');
+            add('Reporter full legal name: [Complete]\nPostal address: [Complete]\nEmail address and mobile number: [Complete]\nDate and time of incident / first contact: [Complete]\nPlace or online channel where contact occurred: [Complete]\nPrior grievance / complaint reference, if any: [Complete or state "Not filed"]');
+            add('SCORES registration note: SEBI lists name, address, email, PAN, mobile number, and date of birth as registration details. Enter sensitive KYC information directly on the official SCORES portal; this draft does not collect PAN or date of birth.');
+            add('2. Person, entity, registration, and account details in the evidence', 'Heading1');
+            add(`Name(s) extracted in English: ${names.length ? names.join('; ') : 'None returned in English; refer to the original evidence.'}`);
+            add(`Entity returned by the local registration check: ${englishReportValue(p1.official_entity, 'Not identified in English; refer to the original evidence.')}`);
+            add(`SEBI registration ID(s) extracted: ${ids.length ? ids.join('; ') : 'None returned in English.'}`);
+            add(`SEBI check status: ${englishReportValue(p1.badge, 'Not returned.')}`);
+            add(`Separately entered account / handle: ${englishReportValue(payload.claimed_username, 'None entered or exact text is in the original evidence.')}`);
+            add(`URL(s) extracted: ${urlSet.size ? [...urlSet].join('; ') : 'None returned in English.'}`);
+            add('The original message or document text is not reproduced in this English report. Attach the original, unaltered communication and uploaded file separately.');
+            add('3. Summary of concern', 'Heading1');
+            add('The local automated checker classified the submitted material as HIGH RISK. This is a screening result only, not an official SEBI verification or legal finding. The registration, name, URL, and risk findings recorded below should be checked against the original evidence.');
+            if (englishSummary) add(`English AI summary (verify against the source): ${englishSummary}`);
+            add('4. SEBI registration checks returned by the checker', 'Heading1');
+            if (registrationChecks.length) {
+                registrationChecks.slice(0, 30).forEach(check => {
+                    add(`SEBI ID: ${englishReportValue(check.sebi_number, 'Not returned')} | Result: ${englishReportValue(check.status, 'Not returned')}\nEntity returned: ${englishReportValue(check.official_entity, 'Not identified')}\nExplanation: ${englishReportValue(check.explanation, 'See the original evidence and independently verify this result.')}`);
+                });
+            } else if (ids.length) {
+                ids.forEach(id => add(`SEBI ID: ${id}\nNo separate registration check details were returned for this ID.`));
+            } else {
+                add('No SEBI registration number was extracted in English from the submitted material. The checker treats missing registration evidence as a critical warning; independently verify the original material.');
+            }
+            if (nameChecks.length || usernameChecks.length) {
+                add('Name and account comparisons', 'Heading2');
+                [...nameChecks, ...usernameChecks].slice(0, 40).forEach(check => {
+                    add(`Name / handle: ${englishReportValue(check.name || check.claimed_username, 'Refer to original evidence')} | SEBI ID: ${englishReportValue(check.sebi_number, 'Not linked')} | Result: ${englishReportValue(check.status, 'Not returned')}\nExplanation: ${englishReportValue(check.explanation, 'See the original evidence and independently verify this result.')}`);
+                });
+            }
+            add('5. URLs and association checks', 'Heading1');
+            if (urlChecks.length) {
+                urlChecks.slice(0, 30).forEach(check => {
+                    add(`URL: ${englishReportValue(check.url)} | Result: ${englishReportValue(check.status, 'Not returned')}\nExplanation: ${englishReportValue(check.explanation, 'No separate explanation was returned.')}`);
+                    reportList(check.combinations).slice(0, 30).forEach(pair => {
+                        if (!pair || typeof pair !== 'object') return;
+                        add(`Association: ${englishReportValue(pair.url || check.url)} x ${englishReportValue(pair.sebi_number, 'No SEBI ID')} x ${englishReportValue(pair.name, 'No name')}\nResult: ${englishReportValue(pair.status, 'Not returned')} - ${englishReportValue(pair.explanation, 'No explanation was returned.')}`);
+                    });
+                });
+            } else if (urlSet.size) {
+                [...urlSet].forEach(url => add(`URL extracted: ${url}\nNo separate URL-to-registration result was returned.`));
+            } else {
+                add('No URL was extracted in English from the supplied evidence.');
+            }
+            add('6. Automated screening result and indicators', 'Heading1');
+            add(`Overall checker status: HIGH RISK\nProcess 1 result: ${englishReportValue(p1.badge, 'Not returned')}\nProcess 2 risk score: ${englishReportValue(p2.risk_score, 'Not returned')} / 100 | ${englishReportValue(p2.badge, 'Not returned')}`);
+            if (flags.length) flags.forEach(flag => bullet(flag));
+            else bullet('No separate risk-indicator text was returned.');
+            add('Indicators are automated screening outputs; they are not independently proven facts.');
+            add('7. Transaction and loss details (complete if applicable)', 'Heading1');
+            add('Amount invested or requested: [Complete / None]\nAmount lost or currently at risk: [Complete / None]\nPayment date(s): [Complete]\nRecipient / beneficiary / UPI ID / bank account / wallet: [Complete if known]\nTransaction ID / UTR / payment reference: [Complete]\nSteps taken to contact the entity, bank, platform, or authorities and responses: [Complete]');
+            add('8. Relief or action requested', 'Heading1');
+            add('I request that the receiving authority, if this matter falls within its remit, assess the attached evidence, verify whether the named person, account, website, and cited SEBI registration are associated with the relevant regulated entity, and advise or route this report to the appropriate next step. If I have a direct grievance against a SEBI-regulated entity, I request the applicable grievance-redressal process and a reasoned response. This draft does not itself lodge a complaint or establish fraud.');
+            add('9. Evidence checklist', 'Heading1');
+            [
+                'Original uploaded file and the complete, unaltered message / chat export or email with sender details and date/time.',
+                'Screenshots or PDFs showing the full communication, account/profile, URLs, and registration claims.',
+                'Payment proof, bank statement extract, UTR / transaction receipt, if money was sent.',
+                'Copies of prior communications, grievance acknowledgement, and replies, if any.',
+                'A record of when each URL was accessed and what it displayed; preserve the source files without editing.'
+            ].forEach(item => bullet(`[ ] ${item}`));
+            add('10. Declaration', 'Heading1');
+            add('I confirm that I have reviewed this draft, corrected it to reflect what I personally know, distinguished direct observations from suspicion, and attached genuine supporting records to the best of my knowledge. I understand that the screening result is not an official SEBI verification or legal determination.');
+            add('Signature: ______________________________    Date: __________________\nPlace: _________________________________');
+            add('11. Filing route and SCORES 2.0 reference', 'Heading1');
+            add('For an eligible investor grievance against a listed company, SEBI-registered intermediary, or Market Infrastructure Institution, first approach the concerned entity through its grievance or compliance contact. SCORES is a grievance-redressal facilitation platform. SEBI states that information about suspected securities-law violations or market intelligence, and complaints about unregistered or unregulated activity, are not SCORES complaints; use the SEBI Market Intelligence portal where that route matches the facts.');
+            add('SEBI guidance describes a 21-calendar-day period for the entity Action Taken Report, review requests within 15 calendar days of the relevant report, and a one-year period from the cause of action for lodging an eligible complaint. Verify current scope, deadlines, and upload instructions before filing.');
+            add('Official SCORES 2.0 portal: https://scores.sebi.gov.in/\nSEBI SCORES FAQ: https://scores.sebi.gov.in/faqs\nSEBI Market Intelligence portal: https://miportal.sebi.gov.in/');
+            add('Generated by Nivesh Fraud Checker. Review before use.');
+            return items;
+        }
+
+        function renderComplaintPreview(items) {
+            const content = document.getElementById('scoresComplaintContent');
+            content.innerHTML = items.map(item => {
+                const text = escapeHtml(item.text).replace(/\n/g, '<br>');
+                if (item.style === 'Title') return `<h1 class="mb-4 border-b border-gray-300 pb-3 text-xl font-bold text-slate-800">${text}</h1>`;
+                if (item.style === 'Heading1') return `<h2 class="mb-2 mt-6 text-base font-bold text-slate-800">${text}</h2>`;
+                if (item.style === 'Heading2') return `<h3 class="mb-2 mt-4 text-sm font-bold text-slate-700">${text}</h3>`;
+                return `<p class="mb-3 whitespace-normal text-sm leading-6 text-slate-800">${text}</p>`;
+            }).join('');
+        }
+
+        function makeDocxBlob(items) {
+            const xmlEscape = text => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+            const paragraphs = items.map(item => {
+                const ppr = item.style ? `<w:pPr><w:pStyle w:val="${item.style}"/></w:pPr>` : '';
+                const runs = item.text.split('\n').map((line, index) => `${index ? '<w:r><w:br/></w:r>' : ''}<w:r><w:t xml:space="preserve">${xmlEscape(line)}</w:t></w:r>`).join('');
+                return `<w:p>${ppr}${runs}</w:p>`;
+            }).join('');
+            const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${paragraphs}<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1080" w:right="1080" w:bottom="1080" w:left="1080" w:header="540" w:footer="540" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+            const stylesXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="21"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="120" w:line="276" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style><w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:basedOn w:val="Normal"/><w:rPr><w:b/><w:color w:val="17365D"/><w:sz w:val="32"/></w:rPr><w:pPr><w:keepNext/></w:pPr></w:style><w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/><w:rPr><w:b/><w:color w:val="17365D"/><w:sz w:val="26"/></w:rPr><w:pPr><w:keepNext/><w:spacing w:before="240" w:after="100"/></w:pPr></w:style><w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:basedOn w:val="Normal"/><w:rPr><w:b/><w:color w:val="365F91"/><w:sz w:val="23"/></w:rPr><w:pPr><w:keepNext/><w:spacing w:before="180" w:after="60"/></w:pPr></w:style></w:styles>`;
+            const encoder = new TextEncoder();
+            const crcTable = new Uint32Array(256);
+            for (let n = 0; n < 256; n++) {
+                let c = n;
+                for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+                crcTable[n] = c >>> 0;
+            }
+            const crc32 = bytes => {
+                let crc = 0xFFFFFFFF;
+                for (const byte of bytes) crc = crcTable[(crc ^ byte) & 0xFF] ^ (crc >>> 8);
+                return (crc ^ 0xFFFFFFFF) >>> 0;
+            };
+            const entries = [
+                ['[Content_Types].xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>`],
+                ['_rels/.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`],
+                ['word/document.xml', documentXml],
+                ['word/styles.xml', stylesXml],
+                ['word/_rels/document.xml.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`]
+            ];
+            const localParts = [];
+            const centralParts = [];
+            let localOffset = 0;
+            for (const [name, content] of entries) {
+                const nameBytes = encoder.encode(name);
+                const dataBytes = encoder.encode(content);
+                const crc = crc32(dataBytes);
+                const local = new Uint8Array(30 + nameBytes.length + dataBytes.length);
+                const lv = new DataView(local.buffer);
+                lv.setUint32(0, 0x04034B50, true); lv.setUint16(4, 20, true); lv.setUint16(6, 0x0800, true);
+                lv.setUint16(8, 0, true); lv.setUint16(10, 0, true); lv.setUint16(12, 0x21, true);
+                lv.setUint32(14, crc, true); lv.setUint32(18, dataBytes.length, true); lv.setUint32(22, dataBytes.length, true);
+                lv.setUint16(26, nameBytes.length, true); lv.setUint16(28, 0, true);
+                local.set(nameBytes, 30); local.set(dataBytes, 30 + nameBytes.length);
+                localParts.push(local);
+
+                const central = new Uint8Array(46 + nameBytes.length);
+                const cv = new DataView(central.buffer);
+                cv.setUint32(0, 0x02014B50, true); cv.setUint16(4, 20, true); cv.setUint16(6, 20, true);
+                cv.setUint16(8, 0x0800, true); cv.setUint16(10, 0, true); cv.setUint16(12, 0, true); cv.setUint16(14, 0x21, true);
+                cv.setUint32(16, crc, true); cv.setUint32(20, dataBytes.length, true); cv.setUint32(24, dataBytes.length, true);
+                cv.setUint16(28, nameBytes.length, true); cv.setUint16(30, 0, true); cv.setUint16(32, 0, true);
+                cv.setUint16(34, 0, true); cv.setUint16(36, 0, true); cv.setUint32(38, 0, true); cv.setUint32(42, localOffset, true);
+                central.set(nameBytes, 46); centralParts.push(central);
+                localOffset += local.length;
+            }
+            const centralSize = centralParts.reduce((sum, part) => sum + part.length, 0);
+            const end = new Uint8Array(22);
+            const ev = new DataView(end.buffer);
+            ev.setUint32(0, 0x06054B50, true); ev.setUint16(4, 0, true); ev.setUint16(6, 0, true);
+            ev.setUint16(8, entries.length, true); ev.setUint16(10, entries.length, true);
+            ev.setUint32(12, centralSize, true); ev.setUint32(16, localOffset, true); ev.setUint16(20, 0, true);
+            return new Blob([...localParts, ...centralParts, end], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        }
+
+        function updateFileStatus() {
+            const file = fileField.files[0];
+            fileStatus.textContent = file ? `Selected: ${file.name}` : 'You can also paste an image here with Ctrl+V.';
+            clearFileButton.classList.toggle('hidden', !file);
+        }
+        function clearSelectedFile() {
+            fileField.value = '';
+            updateFileStatus();
+        }
+        fileField.addEventListener('change', updateFileStatus);
+        clearFileButton.addEventListener('click', clearSelectedFile);
+        document.getElementById('agentResults').addEventListener('click', event => {
+            const toggleButton = event.target.closest('#toggleScoresPreview');
+            if (toggleButton) {
+                const preview = document.getElementById('scoresComplaintPreview');
+                preview.classList.toggle('hidden');
+                toggleButton.textContent = preview.classList.contains('hidden') ? 'Show English document preview' : 'Hide document preview';
+                return;
+            }
+            const downloadButton = event.target.closest('#downloadScoresDraft');
+            if (!downloadButton || !latestAuditForReport) return;
+            try {
+                const documentBlob = makeDocxBlob(buildComplaintItems(latestAuditForReport));
+                const objectUrl = URL.createObjectURL(documentBlob);
+                const link = document.createElement('a');
+                const date = new Date();
+                const suffix = `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}`;
+                link.href = objectUrl;
+                link.download = `Nivesh_SEBI_Complaint_Draft_${suffix}.docx`;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                setTimeout(() => URL.revokeObjectURL(objectUrl), 30000);
+            } catch (error) {
+                alert(`Could not create the Word document: ${error.message || 'Please refresh the page and try again.'}`);
+            }
+        });
+        document.addEventListener('paste', event => {
+            const imageItem = Array.from(event.clipboardData?.items || []).find(item => item.type.startsWith('image/'));
+            if (!imageItem) return;
+            const imageFile = imageItem.getAsFile();
+            if (!imageFile) return;
+            const transfer = new DataTransfer();
+            const imageExtension = ({ 'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/bmp': 'bmp', 'image/png': 'png' })[imageFile.type] || 'png';
+            transfer.items.add(new File([imageFile], `pasted-screenshot-${Date.now()}.${imageExtension}`, { type: imageFile.type || 'image/png' }));
+            fileField.files = transfer.files;
+            updateFileStatus();
+            event.preventDefault();
+        });
+
+        async function waitForFraudBackend(btn) {
+            for (let attempt = 0; attempt < 900; attempt++) {
+                let response;
+                try {
+                    response = await fetch('/api/fraud/status', { cache: 'no-store' });
+                } catch (error) {
+                    throw new Error(`Cannot reach the Nivesh website server. Start it with python setup_and_run.py, then open the exact URL printed in the terminal and choose Fraud Detector.`);
+                }
+                let status;
+                try {
+                    status = await response.json();
+                } catch (error) {
+                    throw new Error(`This page is being served by an old or static website server. Run python setup_and_run.py and open the exact URL printed in the terminal (it may use another port if 8000 is occupied).`);
+                }
+                if (!response.ok) {
+                    throw new Error(`Website server returned HTTP ${response.status}. Run python setup_and_run.py and open the exact URL printed in the terminal.`);
+                }
+                if (status.state === 'ready') return;
+                if (status.state === 'error') {
+                    throw new Error(`Fraud AI could not start: ${status.error || 'see fraud_backend.log'}`);
+                }
+                btn.textContent = `Loading fraud AI models… (${attempt * 2}s)`;
+                await wait(2000);
+            }
+            throw new Error('Fraud AI is still loading. Check fraud_backend.log and try again.');
+        }
+
+        document.getElementById('agentAuditForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('agentSubmitBtn');
+            const resultsDiv = document.getElementById('agentResults');
+            const textInput = document.getElementById('agentInputText').value.trim();
+            const inputError = document.getElementById('agentInputError');
+            if (!textInput && !fileField.files[0]) {
+                inputError.classList.remove('hidden');
+                return;
+            }
+            inputError.classList.add('hidden');
+            latestAuditForReport = null;
+            resultsDiv.classList.add('hidden');
+            document.getElementById('scoresComplaintPreview').classList.add('hidden');
+            document.getElementById('scoresComplaintContent').textContent = '';
+            
+            btn.disabled = true;
+            btn.textContent = "Reading and checking evidence…";
+
+            const formData = new FormData();
+            formData.append('input_text', textInput);
+            formData.append('claimed_username', document.getElementById('agentClaimedUsername').value);
+            if (fileField.files[0]) {
+                formData.append('screenshot', fileField.files[0]);
+            }
+
+            try {
+                await waitForFraudBackend(btn);
+                const response = await fetch('/api/v1/full-audit', {
+                    method: 'POST',
+                    body: formData
+                });
+                let data;
+                try {
+                    data = await response.json();
+                } catch (error) {
+                    throw new Error('The website server returned an unexpected response. Run python setup_and_run.py and open the exact URL printed in the terminal.');
+                }
+                if (!response.ok) throw new Error(data.detail || `Fraud API returned HTTP ${response.status}.`);
+
+                resultsDiv.classList.remove('hidden');
+                document.getElementById('agentDocumentSummary').textContent = data.document_summary || 'No summary was returned.';
+
+                // Overall Badge Styling
+                const overallBadge = document.getElementById('agentOverallBadge');
+                const highRisk = data.overall_status === 'HIGH RISK';
+                latestAuditForReport = {
+                    audit: data,
+                    input_text: textInput,
+                    claimed_username: document.getElementById('agentClaimedUsername').value,
+                    uploaded_filename: fileField.files[0]?.name || ''
+                };
+                const complaintPreview = document.getElementById('scoresComplaintPreview');
+                if (highRisk) {
+                    renderComplaintPreview(buildComplaintItems(latestAuditForReport));
+                    complaintPreview.classList.remove('hidden');
+                } else {
+                    complaintPreview.classList.add('hidden');
+                }
+                overallBadge.innerHTML = `
+                    <div>Overall Status: ${escapeHtml(data.overall_status)}</div>
+                    ${highRisk ? `
+                        <div class="mt-4 border-t border-red-800 pt-4">
+                            <button type="button" id="toggleScoresPreview" class="rounded-lg bg-white px-4 py-2 font-semibold text-red-950 hover:bg-red-100">Hide document preview</button>
+                            <p class="mx-auto mt-2 max-w-2xl text-xs font-normal text-red-100">An English-only draft preview is shown below. Review the facts and complete the blanks; the Word document can be downloaded again whenever needed. A high-risk score is not proof of fraud.</p>
+                            <p class="mx-auto mt-2 max-w-2xl text-xs font-normal text-red-100">For a personal grievance against a regulated entity, first contact that entity. Tips about suspected unregistered activity may belong on SEBI’s <a class="underline font-semibold" href="https://miportal.sebi.gov.in/" target="_blank" rel="noopener noreferrer">Market Intelligence portal</a>, rather than SCORES.</p>
+                        </div>` : ''}
+                `;
+                overallBadge.className = data.overall_status.includes('HIGH')
+                    ? 'p-4 rounded-xl font-bold text-center text-sm bg-red-950 text-red-300 border border-red-800'
+                    : data.overall_status.includes('REVIEW')
+                        ? 'p-4 rounded-xl font-bold text-center text-sm bg-amber-950 text-amber-300 border border-amber-800'
+                        : 'p-4 rounded-xl font-bold text-center text-sm bg-emerald-950 text-emerald-300 border border-emerald-800';
+
+                // Process 1 Display
+                const p1 = data.process_1_sebi;
+                const toneClass = status => status === 'GREEN'
+                    ? 'border-emerald-800 bg-emerald-950/30 text-emerald-200'
+                    : status === 'RED'
+                        ? 'border-red-800 bg-red-950/30 text-red-200'
+                        : 'border-amber-800 bg-amber-950/30 text-amber-200';
+                const sources = data.document_analysis?.evidence_sources || [];
+                const registrationChecks = p1.registration_checks || [];
+                const nameChecks = p1.name_checks || [];
+                const usernameChecks = p1.username_checks || [];
+                const urlChecks = p1.urls_checked || [];
+                const registrationCards = registrationChecks.length
+                    ? registrationChecks.map(check => `<article class="rounded-lg border p-3 ${toneClass(check.status)}"><strong>SEBI ${escapeHtml(check.sebi_number)}</strong><p>${escapeHtml(check.official_entity || 'Registration not found')}</p><p>${escapeHtml(check.explanation)}</p></article>`).join('')
+                    : '<p class="text-red-300">No SEBI number was extracted from the combined evidence.</p>';
+                const nameCards = nameChecks.length
+                    ? nameChecks.map(check => `<article class="rounded-lg border p-3 ${toneClass(check.status)}"><strong>Name: ${escapeHtml(check.name || 'Not extracted')}</strong><p>SEBI ID: ${escapeHtml(check.sebi_number || 'None found')}</p><p>${escapeHtml(check.explanation)}</p><p class="text-xs text-gray-400">Evidence: ${escapeHtml((check.evidence_sources || sources).join(' + ') || 'combined submission')}</p></article>`).join('')
+                    : '<p class="text-gray-400">No company/adviser names were extracted.</p>';
+                const usernameCards = usernameChecks.map(check => `<article class="rounded-lg border p-3 ${toneClass(check.status)}"><strong>${escapeHtml(check.username_type || 'Name / username')}: ${escapeHtml(check.claimed_username)}</strong><p>SEBI ID: ${escapeHtml(check.sebi_number || 'None found')}</p><p>${escapeHtml(check.explanation)}</p><p class="text-xs text-gray-400">Evidence: ${escapeHtml((check.evidence_sources || sources).join(' + ') || 'combined submission')}</p></article>`).join('');
+                const urlCards = urlChecks.length
+                    ? urlChecks.map(check => `<article class="rounded-lg border p-3 ${toneClass(check.status)}"><strong>URL: ${escapeHtml(check.url)}</strong><p class="mt-1">${escapeHtml(check.explanation)}</p><div class="mt-2 space-y-2">${(check.combinations || []).map(pair => `<div class="rounded border border-gray-700 bg-gray-950/70 p-2 ${toneClass(pair.status)}"><strong>${escapeHtml(pair.status)}:</strong> ${escapeHtml(pair.url)} × ${escapeHtml(pair.sebi_number || 'No SEBI ID')} × ${escapeHtml(pair.name || 'No name')}<p class="mt-1 text-xs text-gray-400">${escapeHtml(pair.name_type || 'identity')} · ${pair.sebi_number_in_evidence ? 'SEBI ID appears in the submitted evidence' : 'SEBI ID found by name lookup only'} · Evidence: ${escapeHtml((pair.evidence_sources || sources).join(' + ') || 'combined submission')}</p></div><p class="px-2 text-gray-400">${escapeHtml(pair.explanation)}</p>`).join('')}</div></article>`).join('')
+                    : '<p class="text-gray-400">No URLs were found in the typed text or uploaded file.</p>';
+                document.getElementById('agentP1Result').innerHTML = `
+                    <p><strong>Status:</strong> ${escapeHtml(p1.badge)}</p>
+                    <p><strong>Entity:</strong> ${escapeHtml(p1.official_entity || 'N/A')}</p>
+                    <p><strong>SEBI ID:</strong> ${escapeHtml(p1.sebi_number || 'None Found')}</p>
+                    <p class="text-gray-400 mt-1">${escapeHtml(p1.reason_en)}</p>
+                    ${(p1.red_flags || []).map(flag => `<p class="text-red-300">• ${escapeHtml(flag)}</p>`).join('')}
+                    <p class="mt-3 text-gray-400"><strong>Inputs evaluated together:</strong> ${escapeHtml(sources.join(' + ') || 'Message / Channel Text')}</p>
+                    <section class="mt-3 space-y-2"><h4 class="font-semibold text-gray-200">SEBI registration checks</h4>${registrationCards}</section>
+                    <section class="mt-3 space-y-2"><h4 class="font-semibold text-gray-200">Every extracted name × SEBI number</h4>${nameCards}</section>
+                    ${usernameCards ? `<section class="mt-3 space-y-2"><h4 class="font-semibold text-gray-200">Extracted and entered username checks</h4>${usernameCards}</section>` : ''}
+                    <section class="mt-3 space-y-2"><h4 class="font-semibold text-gray-200">Every URL × SEBI number × name</h4>${urlCards}</section>
+                `;
+
+                // Process 2 Display
+                const p2 = data.process_2_risk_audit;
+                const riskScore = Number(p2.risk_score);
+                const flags = Array.isArray(p2.detected_flags) ? p2.detected_flags : [];
+                document.getElementById('agentP2Result').innerHTML = `
+                    <p><strong>Risk Score:</strong> ${Number.isFinite(riskScore) ? riskScore : 'Unavailable'} / 100</p>
+                    <p><strong>Risk Level:</strong> ${escapeHtml(p2.badge)}</p>
+                    <p><strong>Flags:</strong> ${escapeHtml(flags.join('; ') || 'No risk indicators were returned')}</p>
+                    <p class="text-gray-400 mt-2"><strong>AI summary:</strong> ${escapeHtml(p2.ai_summary || data.ai_summary || data.document_analysis?.document_summary || 'No summary was returned.')}</p>
+                `;
+
+            } catch (err) {
+                alert(err.message || 'Could not connect to the fraud checking service. Check fraud_backend.log.');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<span>Run Fraud Audit</span> <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>`;
+            }
+        });
+    </script>
+</body>
+</html>

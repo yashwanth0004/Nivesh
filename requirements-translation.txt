@@ -1,0 +1,5 @@
+# Optional dependency for regenerating translated HTML pages.
+# On Windows, IndicTransToolkit compiles a Cython extension and requires
+# Microsoft C++ Build Tools. Pretranslated pages work without this package.
+-r requirements.txt
+indictranstoolkit>=1.1.1

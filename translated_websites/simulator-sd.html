@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="sd">
+<head><base href="../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivesharex جی حفاظت اوزار</title>
+    <link rel="stylesheet" href="simulator.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+
+<!-- Safety Disclaimer Banner -->
+<div id="disclaimer-banner">
+    🛡️ <strong>تعلیمی اوزار صرف</strong> &nbsp;|&nbsp;
+    ڪو حقیقی پئسا شامل ناہی &nbsp;|&nbsp; مالی صلاح نہ &nbsp;|&nbsp; بروڪر یا ٽپسٽر نہ
+</div>
+
+<div id="simulator-container">
+    <header id="step-header">
+        <div class="header-left">
+            <h1>Nives</h1>
+            <span class="header-sub">سیڙپڪاری جو نتیجو سمیلیٽر</span>
+        </div>
+        <div class="header-right">
+            <button id="btn-lang" class="btn-lang">ہندی</button>
+            <button id="btn-tutorial" class="btn-info">ٽیوٽوریل شروع ڪریو</button>
+        </div>
+    </header>
+
+    <!-- Scenario Selector -->
+    <div class="section-box" id="step-scenario">
+        <h3 class="section-title">بازار جو منظرنامو چونڊیو <span class="hi">بازار پریدرشتر چنر</span></h3>
+        <div class="scenario-cards">
+            <div class="scenario-card active" data-scenario="normal">
+                <div class="sc-icon">🟢</div>
+                <div class="sc-name">عام مارڪیٽ</div>
+                <div class="sc-name-hi">سامن بازار</div>
+                <div class="sc-risk low">گھٽ خطرو</div>
+            </div>
+            <div class="scenario-card" data-scenario="crash">
+                <div class="sc-icon">📉</div>
+                <div class="sc-name">مارڪیٽ جی تباہی</div>
+                <div class="sc-name-hi">بازار دردن</div>
+                <div class="sc-risk high">وڏو خطرو</div>
+            </div>
+            <div class="scenario-card" data-scenario="highvol">
+                <div class="sc-icon">⚡</div>
+                <div class="sc-name">اعلی اتارنا</div>
+                <div class="sc-name-hi">ات‍</div>
+                <div class="sc-risk high">وڏو خطرو</div>
+            </div>
+            <div class="scenario-card" data-scenario="fraud">
+                <div class="sc-icon">🚨</div>
+                <div class="sc-name">فراڊ</div>
+                <div class="sc-name-hi">د‍</div>
+                <div class="sc-risk extreme">تمام گھڻو</div>
+            </div>
+            <div class="scenario-card" data-scenario="leverage">
+                <div class="sc-icon">⚠️</div>
+                <div class="sc-name">لائیورج ( 2 )</div>
+                <div class="sc-name-hi">اڳتی جو سفر</div>
+                <div class="sc-risk high">وڏو خطرو</div>
+            </div>
+        </div>
+        <div id="scenario-desc" class="scenario-desc"></div>
+    </div>
+
+    <!-- Mode -->
+    <div class="mode-selector" id="step-mode">
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="single"> واحد حڪمت عملی<span class="hi">ھڪ رندی</span>
+        </label>
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="compare" checked> ٻن حڪمت عملین جو موازنہ ڪریو<span class="hi">دو رنتی تولی</span>
+        </label>
+    </div>
+
+    <!-- Global Settings -->
+    <div class="global-settings section-box" id="step-global">
+        <div class="input-group">
+            <label>💰 Capital <span class="hi">( ڪل )</span></label>
+            <input type="number" id="total-capital" value="10000" min="100">
+            <small>سیڙپ ڪرڻ لاء ڪل رقم</small>
+        </div>
+        <div class="input-group" style="flex:1.5;">
+            <label>وقت <span class="hi">( آ )</span></label>
+            <div style="display:flex; gap:5px;">
+                <input type="number" id="sim-duration" value="2" min="1" max="1000" style="flex:1">
+                <select id="sim-duration-unit" style="flex:1">
+                    <option value="years">سال</option>
+                    <option value="months">مھنھ</option>
+                    <option value="weeks">ہفتا</option>
+                    <option value="days">ڊینھ</option>
+                </select>
+            </div>
+            <small>ڪیترو وقت ٺہڪی</small>
+        </div>
+        <div class="input-group">
+            <label>🔁 Iterations <span class="hi">( پور )</span></label>
+            <input type="number" id="sim-iterations" value="20" min="1" max="100">
+            <small>متبادل مارڪیٽ جی تعداد</small>
+        </div>
+    </div>
+
+    <!-- Combinations -->
+    <div class="combinations-wrapper" id="step-combinations">
+        <div class="combination-card" id="comb-1-card">
+            <h2>ج‍ی</h2>
+            <button class="btn-add" id="btn-add-c1">+ ورچوئل اثاثو شامل ڪریو</button>
+            <div id="c1-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                سیڙپ ٿیل ₹<span id="c1-total-inv">0</span>
+                <div class="capital-left" id="c1-capital-left">باقی ₹10000</div>
+            </div>
+        </div>
+        <div class="combination-card" id="comb-2-card">
+            <h2>ج‍ی</h2>
+            <button class="btn-add" id="btn-add-c2">+ ورچوئل اثاثو شامل ڪریو</button>
+            <div id="c2-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                سیڙپ ٿیل ₹<span id="c2-total-inv">0</span>
+                <div class="capital-left" id="c2-capital-left">باقی ₹10000</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-section" id="step-run">
+        <button id="btn-run-sim" class="btn-primary">رن سمولشن</button>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" class="hidden">
+        <hr>
+        <h2 id="overall-title">مجموعی نتیجا سڀنی تکرار ۾ اوسط</h2>
+
+        <!-- Overall Area Chart -->
+        <div class="chart-box" id="overall-chart-box" style="margin-bottom:20px;">
+            <div class="chart-header">
+                <h3>مارڪیٽ جی رستی ( سڀ )</h3>
+                <button class="btn-expand" onclick="toggleExpand('overall-chart-box')">وڌاء</button>
+            </div>
+            <div id="chartOverall" class="chart-render-area" style="height:320px;"></div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div id="summary-cards" class="summary-cards-wrapper">
+            <div class="summary-card" id="summary-c1">
+                <h3>ج‍ی</h3>
+                <p>ایوی جی فائنل ویلیو <strong>₹<span id="c1-overall-val">0</span></strong></p>
+                <p>ڪل سیڙپ ٿیل ₹<span id="c1-tot-inv-res">0</span></p>
+                <p>سمول واپسی <span id="c1-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>منافع بخش</span>
+                    <strong id="c1-profitable">0</strong><span>% ورجاءَ ۾</span>
+                </div>
+            </div>
+            <div class="summary-card" id="summary-c2">
+                <h3>ج‍ی</h3>
+                <p>ایوی جی فائنل ویلیو <strong>₹<span id="c2-overall-val">0</span></strong></p>
+                <p>ڪل سیڙپ ٿیل ₹<span id="c2-tot-inv-res">0</span></p>
+                <p>سمول واپسی <span id="c2-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>منافع بخش</span>
+                    <strong id="c2-profitable">0</strong><span>% ورجاءَ ۾</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consequence Panel -->
+        <div id="consequence-panel" class="section-box" id="step-consequence">
+            <h3 class="section-title">نتیجن جو بہترین / خراب اثر</h3>
+            <div class="consequence-grid">
+                <div class="con-header">نتیجو</div>
+                <div class="con-header">ج‍ید</div>
+                <div class="con-header col-c2">ج‍ی</div>
+
+                <div class="con-label">بہترین ڪیس</div>
+                <div class="con-val best" id="con-best-a">—</div>
+                <div class="con-val best col-c2" id="con-best-b">—</div>
+
+                <div class="con-label">اوسط</div>
+                <div class="con-val avg" id="con-avg-a">—</div>
+                <div class="con-val avg col-c2" id="con-avg-b">—</div>
+
+                <div class="con-label">سڀ کان خراب ڪیس</div>
+                <div class="con-val worst" id="con-worst-a">—</div>
+                <div class="con-val worst col-c2" id="con-worst-b">—</div>
+
+                <div class="con-label">وڌ ۾ گھٽ نقصان</div>
+                <div class="con-val worst" id="con-maxloss-a">—</div>
+                <div class="con-val worst col-c2" id="con-maxloss-b">—</div>
+            </div>
+        </div>
+
+        <!-- Guardrail-compliant conclusion -->
+        <div id="conclusion-box" class="conclusion-box hidden">
+            <h3>سمولڻ</h3>
+            <p id="conclusion-text"></p>
+            <p class="disclaimer-inline">اھو ھڪ سمول نہ آھی ۔ ماضی جا نتیجا مستقبل جی نتیجن کی ہمیشہ SBI - رجسٽرڊ صلاحڪار سان گڏ آھن</p>
+        </div>
+
+        <!-- Fraud Awareness Box -->
+        <div id="fraud-box" class="fraud-awareness-box hidden">
+            <h3>ٺڳیء جی خبرداری</h3>
+            <ul>
+                <li>🔴 <strong>واپسی جی ضمانت</strong> اھو ہڪ لال جھنڊو آھی ۔ ڪو بہ منافعی جی ضمانت ناہی</li>
+                <li>🔴 <strong>تیز عمل ڪرڻ جو دٻاء</strong> ( ہاڻی ) سیڙپ ڪریو یا موقعو وڃائی ڇڏیو</li>
+                <li>🔴 <strong>اڻ سڃاتل بروڪر</strong> یا ایپس جیڪی او ۔ ٽی / آڌار جی لاء پڇندیون آہن ، اہی ڪڏھن بہ حصیداری نہ ڪندا آھن</li>
+                <li>ہمیشہ چیڪ ڪریو تہ بروکر سان رجسٽر ٿیل آھی <strong>SEBI ( Sebi )</strong>.</li>
+                <li>فراڊ رپورٽ ڪریو <strong>SEBI SCORES</strong> یا ڪال <strong>قومی سائبر ڪرائم ہیلپ لائن 1930</strong>.</li>
+            </ul>
+        </div>
+
+        <hr>
+        <h2>ڊیپ ڊائیو : مخصوص تاوا</h2>
+
+        <div class="iteration-selector" id="step-iteration">
+            <label for="chart-iteration-select"><strong>Iteration چونڊیو</strong></label>
+            <select id="chart-iteration-select"></select>
+        </div>
+
+        <div class="charts-wrapper" id="step-charts">
+            <div class="chart-box" id="chart-a-box">
+                <div class="chart-header">
+                    <h3>جاڻ ہڪ موم</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-a-box')">وڌاء</button>
+                </div>
+                <div id="chartA" class="chart-render-area" style="height:350px;"></div>
+            </div>
+            <div class="chart-box" id="chart-b-box">
+                <div class="chart-header">
+                    <h3>ج‍ی بی موم</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-b-box')">وڌاء</button>
+                </div>
+                <div id="chartB" class="chart-render-area" style="height:350px;"></div>
+            </div>
+        </div>
+
+        <div class="periodic-table-container" id="step-table">
+            <h3>دور - در مدت جو خلاصو ( انگریزی )</h3>
+            <table id="periodic-table">
+                <thead>
+                    <tr>
+                        <th>دور</th>
+                        <th>ھڪ قدر</th>
+                        <th class="col-c2">ڪومب بی ویلیو</th>
+                    </tr>
+                </thead>
+                <tbody id="periodic-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Asset Template -->
+<template id="asset-template">
+    <div class="asset-item">
+        <div class="asset-header">
+            <h4 class="asset-title">ورچوئل ڪمپنی</h4>
+            <div class="asset-header-right">
+                <span class="risk-badge"></span>
+                <button class="btn-remove">&times;</button>
+            </div>
+        </div>
+        <div class="asset-body">
+            <div class="input-group">
+                <label>اثاثن جو قسم <span class="hi">( پرڪارڪار )</span></label>
+                <select class="asset-type">
+                    <option value="stock">ورچوئل سٽاڪ ( اعلی خطرو )</option>
+                    <option value="bond">ورچوئل بانڊ ( گھٽ خطرو )</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>شروعاتی قیمت ₹ <span class="hi">( شاور )</span></label>
+                <input type="number" class="asset-price" value="100" min="1" max="1000000">
+            </div>
+            <div class="input-group">
+                <label>سیڙپڪاری جو طریقو <span class="hi">( نیش ) پرڪار</span></label>
+                <select class="inv-mode">
+                    <option value="lumpsum">Lumpsampsom اڪمپسامڪ اکماچ</option>
+                    <option value="sip">SIP ہر مہنی</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label class="dynamic-inv-label">مقدار <span class="hi">( ما )</span></label>
+                <input type="number" class="inv-amount" value="50" min="1">
+                <div class="asset-total-cost" style="font-size: 0.8rem; margin-top: 4px; color: #1e40af; font-weight: 600;">
+                    ڪل سیڙپڪاری ₹<span class="cost-value">5000</span>
+                </div>
+            </div>
+        </div>
+        <div class="asset-analogy"></div>
+    </div>
+</template>
+
+<!-- Sidebar Tutorial Panel -->
+<div id="tour-panel">
+    <div id="tour-step-counter">قدم 1</div>
+    <div id="tour-text"></div>
+    <div class="tour-buttons">
+        <button id="btn-tour-skip" class="btn-tour-secondary">ٽیوٽوریل جو آخر</button>
+        <button id="btn-tour-next" class="btn-tour-primary">اگلا</button>
+    </div>
+</div>
+
+<script src="simulator.js?v=tour-i18n-20261004"></script>
+</body>
+</html>

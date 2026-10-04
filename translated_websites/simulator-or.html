@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="or">
+<head><base href="../">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ନିବେଶ ସିମୁଲେଟର - ଇନଭେଷ୍ଟର ସୁରକ୍ଷା ଉପକରଣ</title>
+    <link rel="stylesheet" href="simulator.css">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+
+<!-- Safety Disclaimer Banner -->
+<div id="disclaimer-banner">
+    🛡️ <strong>କେବଳ ଶିକ୍ଷାଗତ ଉପକରଣ</strong> &nbsp;|&nbsp;
+    ପ୍ରକୃତ ଅର୍ଥ ଜଡ଼ିତ ନାହିଁ &nbsp;|&nbsp; କୌଣସି ଆର୍ଥିକ ପରାମର୍ଶ ନାହିଁ &nbsp;|&nbsp; ଜଣେ ଦଲାଲ କିମ୍ବା ଟିପ୍ଷ୍ଟର ନୁହଁନ୍ତି
+</div>
+
+<div id="simulator-container">
+    <header id="step-header">
+        <div class="header-left">
+            <h1>ନିବେଶ ସିମୁଲେଟର</h1>
+            <span class="header-sub">ନିବେଶ ପରିଣାମ ସିମୁଲେଟର</span>
+        </div>
+        <div class="header-right">
+            <button id="btn-lang" class="btn-lang">ହିନ୍ଦୀ</button>
+            <button id="btn-tutorial" class="btn-info">ଟ୍ଯ଼ୁଟୋରିଆଲ୍ ଆରମ୍ଭ କରନ୍ତୁ</button>
+        </div>
+    </header>
+
+    <!-- Scenario Selector -->
+    <div class="section-box" id="step-scenario">
+        <h3 class="section-title">ଏକ ବଜାର ଦୃଶ୍ଯ଼ ଚଯ଼ନ କରନ୍ତୁ <span class="hi">ବଜାରର ପରିସ୍ଥିତି</span></h3>
+        <div class="scenario-cards">
+            <div class="scenario-card active" data-scenario="normal">
+                <div class="sc-icon">🟢</div>
+                <div class="sc-name">ସାଧାରଣ ବଜାର</div>
+                <div class="sc-name-hi">ସମାନ ବଜାର</div>
+                <div class="sc-risk low">କମ୍ ବିପଦ</div>
+            </div>
+            <div class="scenario-card" data-scenario="crash">
+                <div class="sc-icon">📉</div>
+                <div class="sc-name">ବଜାର ପତନ</div>
+                <div class="sc-name-hi">ବଜାର ଦୂର</div>
+                <div class="sc-risk high">ଉଚ୍ଚ ବିପଦ</div>
+            </div>
+            <div class="scenario-card" data-scenario="highvol">
+                <div class="sc-icon">⚡</div>
+                <div class="sc-name">ଉଚ୍ଚ ଅସ୍ଥିରତା</div>
+                <div class="sc-name-hi">ଉଚ୍ ଉତ୍ତର - ଉତ୍ତାର - ପାଠ</div>
+                <div class="sc-risk high">ଉଚ୍ଚ ବିପଦ</div>
+            </div>
+            <div class="scenario-card" data-scenario="fraud">
+                <div class="sc-icon">🚨</div>
+                <div class="sc-name">ଠକେଇ / ଦୁର୍ନୀତି</div>
+                <div class="sc-name-hi">ଧକାଧାଡ଼ି</div>
+                <div class="sc-risk extreme">ଅତି</div>
+            </div>
+            <div class="scenario-card" data-scenario="leverage">
+                <div class="sc-icon">⚠️</div>
+                <div class="sc-name">ଲାଭପ୍ରଦତା ( 2 )</div>
+                <div class="sc-name-hi">ଉତ୍ତର ସେ ଭବିଷ୍ଯ଼ତ</div>
+                <div class="sc-risk high">ଉଚ୍ଚ ବିପଦ</div>
+            </div>
+        </div>
+        <div id="scenario-desc" class="scenario-desc"></div>
+    </div>
+
+    <!-- Mode -->
+    <div class="mode-selector" id="step-mode">
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="single"> ଏକକ ରଣନୀତି<span class="hi">ଗୋଟିଏ ରଣାଟିଏ</span>
+        </label>
+        <label class="radio-label">
+            <input type="radio" name="simMode" value="compare" checked> ଦୁଇଟି ରଣନୀତି ତୁଳନା କରନ୍ତୁ<span class="hi">ଦୁଇ ରଣାଙ୍ଗ</span>
+        </label>
+    </div>
+
+    <!-- Global Settings -->
+    <div class="global-settings section-box" id="step-global">
+        <div class="input-group">
+            <label>ରାଜଧାନୀ <span class="hi">( କୁଲ )</span></label>
+            <input type="number" id="total-capital" value="10000" min="100">
+            <small>ନିବେଶ ପାଇଁ ଉପଲବ୍ଧ ମୋଟ ଅର୍ଥ</small>
+        </div>
+        <div class="input-group" style="flex:1.5;">
+            <label>ସମଯ଼ <span class="hi">( ଅଧିକ )</span></label>
+            <div style="display:flex; gap:5px;">
+                <input type="number" id="sim-duration" value="2" min="1" max="1000" style="flex:1">
+                <select id="sim-duration-unit" style="flex:1">
+                    <option value="years">ବର୍ଷ</option>
+                    <option value="months">ମାସ</option>
+                    <option value="weeks">ସପ୍ତାହ</option>
+                    <option value="days">ଦିନ</option>
+                </select>
+            </div>
+            <small>କେତେ ସମଯ଼ ଅନୁକରଣ କରିବାକୁ ହେବ</small>
+        </div>
+        <div class="input-group">
+            <label>ପୁନରାବୃତ୍ତି <span class="hi">( ପୂର୍ବରାତ୍ରୀ )</span></label>
+            <input type="number" id="sim-iterations" value="20" min="1" max="100">
+            <small>ବିକଳ୍ପ ବଜାର ବ୍ରହ୍ମାଣ୍ଡ ସଂଖ୍ଯ଼ା</small>
+        </div>
+    </div>
+
+    <!-- Combinations -->
+    <div class="combinations-wrapper" id="step-combinations">
+        <div class="combination-card" id="comb-1-card">
+            <h2>' ଏ " ମିଶ୍ରଣ</h2>
+            <button class="btn-add" id="btn-add-c1">+ ଭର୍ଚୁଆଲ୍ ସମ୍ପତ୍ତି ଯୋଗ କରନ୍ତୁ</button>
+            <div id="c1-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                ନିବେଶ କରାଯାଇଥିବାଃ ₹<span id="c1-total-inv">0</span>
+                <div class="capital-left" id="c1-capital-left">ଅବଶିଷ୍ଟଃ ₹10000</div>
+            </div>
+        </div>
+        <div class="combination-card" id="comb-2-card">
+            <h2>' ମିଶ୍ରଣ ବି</h2>
+            <button class="btn-add" id="btn-add-c2">+ ଭର୍ଚୁଆଲ୍ ସମ୍ପତ୍ତି ଯୋଗ କରନ୍ତୁ</button>
+            <div id="c2-assets" class="assets-list"></div>
+            <div class="comb-totals">
+                ନିବେଶ କରାଯାଇଥିବାଃ ₹<span id="c2-total-inv">0</span>
+                <div class="capital-left" id="c2-capital-left">ଅବଶିଷ୍ଟଃ ₹10000</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-section" id="step-run">
+        <button id="btn-run-sim" class="btn-primary">ସିମୁଲେସନ୍ ଚଳାନ୍ତୁ</button>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" class="hidden">
+        <hr>
+        <h2 id="overall-title">ସାମଗ୍ରିକ ଫଳାଫଳ ସବୁ ଥର ପ୍ରତି ହାରାହାରି</h2>
+
+        <!-- Overall Area Chart -->
+        <div class="chart-box" id="overall-chart-box" style="margin-bottom:20px;">
+            <div class="chart-header">
+                <h3>ବଜାରର ଆଶା କରାଯାଉଥିବା ପଥ ( ସମସ୍ତ ପୁନରାବୃତ୍ତି )</h3>
+                <button class="btn-expand" onclick="toggleExpand('overall-chart-box')">ବିସ୍ତାର</button>
+            </div>
+            <div id="chartOverall" class="chart-render-area" style="height:320px;"></div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div id="summary-cards" class="summary-cards-wrapper">
+            <div class="summary-card" id="summary-c1">
+                <h3>' ଏ " ମିଶ୍ରଣ</h3>
+                <p>ଏ . ଭି . ଜି ଅନ୍ତିମ ମୂଲ୍ଯ଼ଃ <strong>₹<span id="c1-overall-val">0</span></strong></p>
+                <p>ମୋଟ ନିବେଶଃ ₹<span id="c1-tot-inv-res">0</span></p>
+                <p>ଅନୁକରଣଯୋଗ୍ଯ଼ ପ୍ରତ୍ଯ଼ାବର୍ତ୍ତନଃ <span id="c1-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>ଲାଭଜନକ</span>
+                    <strong id="c1-profitable">0</strong><span>% ପୁନରାବୃତ୍ତିରେ</span>
+                </div>
+            </div>
+            <div class="summary-card" id="summary-c2">
+                <h3>' ମିଶ୍ରଣ ବି</h3>
+                <p>ଏ . ଭି . ଜି ଅନ୍ତିମ ମୂଲ୍ଯ଼ଃ <strong>₹<span id="c2-overall-val">0</span></strong></p>
+                <p>ମୋଟ ନିବେଶଃ ₹<span id="c2-tot-inv-res">0</span></p>
+                <p>ଅନୁକରଣଯୋଗ୍ଯ଼ ପ୍ରତ୍ଯ଼ାବର୍ତ୍ତନଃ <span id="c2-return-perc">0</span>%</p>
+                <div class="safety-score-row">
+                    <span>ଲାଭଜନକ</span>
+                    <strong id="c2-profitable">0</strong><span>% ପୁନରାବୃତ୍ତିରେ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consequence Panel -->
+        <div id="consequence-panel" class="section-box" id="step-consequence">
+            <h3 class="section-title">ପରିଣାମ ସାରାଂଶ ଶ୍ରେଷ୍ଠ / ଖରାପ ଫଳାଫଳ</h3>
+            <div class="consequence-grid">
+                <div class="con-header">ଫଳାଫଳ</div>
+                <div class="con-header">ମିଶ୍ରଣ ' ଏ</div>
+                <div class="con-header col-c2">ମିଶ୍ରଣ ବି</div>
+
+                <div class="con-label">ଶ୍ରେଷ୍ଠ ମାମଲା</div>
+                <div class="con-val best" id="con-best-a">—</div>
+                <div class="con-val best col-c2" id="con-best-b">—</div>
+
+                <div class="con-label">ହାରାହାରି</div>
+                <div class="con-val avg" id="con-avg-a">—</div>
+                <div class="con-val avg col-c2" id="con-avg-b">—</div>
+
+                <div class="con-label">ସବୁଠାରୁ ଖରାପ ମାମଲା</div>
+                <div class="con-val worst" id="con-worst-a">—</div>
+                <div class="con-val worst col-c2" id="con-worst-b">—</div>
+
+                <div class="con-label">ସର୍ବାଧିକ କ୍ଷତି</div>
+                <div class="con-val worst" id="con-maxloss-a">—</div>
+                <div class="con-val worst col-c2" id="con-maxloss-b">—</div>
+            </div>
+        </div>
+
+        <!-- Guardrail-compliant conclusion -->
+        <div id="conclusion-box" class="conclusion-box hidden">
+            <h3>Â ଅନୁକରଣ ପର୍ଯ୍ଯ଼ବେକ୍ଷଣ</h3>
+            <p id="conclusion-text"></p>
+            <p class="disclaimer-inline">ଏହା ଏକ ଅନୁକରଣ ନୁହେଁ , ଅତୀତରେ ସିମୁଲେଟେଡ୍ ଫଳାଫଳ ଭବିଷ୍ଯ଼ତର ପୂର୍ବାନୁମାନ | ପ୍ରକୃତ ଅର୍ଥ ବିନିଯୋଗ କରିବା ପୂର୍ବରୁ ସର୍ବଦା ସେବିଶେଷଃ</p>
+        </div>
+
+        <!-- Fraud Awareness Box -->
+        <div id="fraud-box" class="fraud-awareness-box hidden">
+            <h3>ଠକେଇ / ଦୁର୍ନୀତି ସଚେତନତା</h3>
+            <ul>
+                <li>🔴 <strong>ଫେରସ୍ତ</strong> ଏହା ଏକ ଲାଲ ପତାକା ୤ କୌଣସି ନିବେଶ ଲାଭର ଗ୍ଯ଼ାରେଣ୍ଟି ନୁହେଁ , କିଛିଟା ଅଛି କି ନାହିଁ</li>
+                <li>🔴 <strong>ଦ୍ରୁତ କାର୍ଯ୍ଯ଼ କରିବା ପାଇଁ ଚାପ</strong> ( ବର୍ତ୍ତମାନ ) ନିବେଶ କରନ୍ତୁ କିମ୍ବା ସୁଯୋଗ ହରାଇବା ଏକ କୌଶଳ ୤</li>
+                <li>🔴 <strong>ଅଜଣା ଦଲାଲ</strong> କିମ୍ବା ଓଟିପି / ଆଧାର ମାଗୁଥିବା ଆପ୍ କେବେହେଲେ ଏଗୁଡ଼ିକୁ ସେଯ଼ାର କରନ୍ତୁ ନାହିଁ ୤</li>
+                <li>ସର୍ବଦା ଯାଞ୍ଚ କରନ୍ତୁ ଯେ ଦଲାଲ ପଞ୍ଜୀକୃତ ହୋଇଛନ୍ତି କି ନାହିଁ <strong>ସେବି ( ସେବିବି . ଗଭ )</strong>.</li>
+                <li>ଠକେଇ ରିପୋର୍ଟ କରନ୍ତୁ <strong>ସେବି ସ୍କୋର</strong> କିମ୍ବା ଡାକନ୍ତୁ <strong>ଜାତୀଯ଼ ସାଇବର ଅପରାଧ ହେଲ୍ପଲାଇନ୍ଃ 1930</strong>.</li>
+            </ul>
+        </div>
+
+        <hr>
+        <h2>ଗଭୀର ଡାଇଭ୍ଃ ନିର୍ଦ୍ଦିଷ୍ଟ ପୁନରାବୃତ୍ତି ଅନ୍ୱେଷଣ</h2>
+
+        <div class="iteration-selector" id="step-iteration">
+            <label for="chart-iteration-select"><strong>ପୁନରାବୃତ୍ତି / ପୂର୍ଣ୍ଣାଙ୍ଗ ଚଯ଼ନ କରନ୍ତୁଃ</strong></label>
+            <select id="chart-iteration-select"></select>
+        </div>
+
+        <div class="charts-wrapper" id="step-charts">
+            <div class="chart-box" id="chart-a-box">
+                <div class="chart-header">
+                    <h3>' ଏକ କମ୍ବିନସନ କ୍ଯ଼ାଣ୍ଡଲ ଷ୍ଟିକ</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-a-box')">ବିସ୍ତାର</button>
+                </div>
+                <div id="chartA" class="chart-render-area" style="height:350px;"></div>
+            </div>
+            <div class="chart-box" id="chart-b-box">
+                <div class="chart-header">
+                    <h3>' କମ୍ବିନସନ ବି . କ୍ଯ଼ାଣ୍ଡଲଷ୍ଟିକ୍</h3>
+                    <button class="btn-expand" onclick="toggleExpand('chart-b-box')">ବିସ୍ତାର</button>
+                </div>
+                <div id="chartB" class="chart-render-area" style="height:350px;"></div>
+            </div>
+        </div>
+
+        <div class="periodic-table-container" id="step-table">
+            <h3>ସମଯ଼ - ଦ୍ବାରା ସାରାଂଶ ( ନିର୍ବାଚିତ )</h3>
+            <table id="periodic-table">
+                <thead>
+                    <tr>
+                        <th>ସମଯ଼</th>
+                        <th>ଏକ ମୂଲ୍ଯ଼ ( )</th>
+                        <th class="col-c2">କମ୍ବ ବି ମୂଲ୍ଯ଼</th>
+                    </tr>
+                </thead>
+                <tbody id="periodic-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Asset Template -->
+<template id="asset-template">
+    <div class="asset-item">
+        <div class="asset-header">
+            <h4 class="asset-title">ଭର୍ଚୁଆଲ୍ କମ୍ପାନୀ</h4>
+            <div class="asset-header-right">
+                <span class="risk-badge"></span>
+                <button class="btn-remove">&times;</button>
+            </div>
+        </div>
+        <div class="asset-body">
+            <div class="input-group">
+                <label>ସମ୍ପତ୍ତିର ପ୍ରକାର <span class="hi">( ପର୍କାର )</span></label>
+                <select class="asset-type">
+                    <option value="stock">ଭର୍ଚୁଆଲ୍ ଷ୍ଟକ୍ ( ଉଚ୍ଚ ବିପଦ )</option>
+                    <option value="bond">ଭର୍ଚୁଆଲ୍ ବଣ୍ଡ୍ ( କମ୍ ବିପଦ )</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>ପ୍ରାରମ୍ଭିକ ମୂଲ୍ଯ଼ ₹ <span class="hi">( ' ଶ ) ର " - ଏ - କେ .</span></label>
+                <input type="number" class="asset-price" value="100" min="1" max="1000000">
+            </div>
+            <div class="input-group">
+                <label>ନିବେଶ ପଦ୍ଧତି <span class="hi">( ନବ )</span></label>
+                <select class="inv-mode">
+                    <option value="lumpsum">ଲମ୍ପସମ ଏକମୁଷ୍ଟ</option>
+                    <option value="sip">ସିପ୍ ହର୍ ମହନୀ</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label class="dynamic-inv-label">ପରିମାଣ <span class="hi">( ମା )</span></label>
+                <input type="number" class="inv-amount" value="50" min="1">
+                <div class="asset-total-cost" style="font-size: 0.8rem; margin-top: 4px; color: #1e40af; font-weight: 600;">
+                    ମୋଟ ନିବେଶଃ ₹<span class="cost-value">5000</span>
+                </div>
+            </div>
+        </div>
+        <div class="asset-analogy"></div>
+    </div>
+</template>
+
+<!-- Sidebar Tutorial Panel -->
+<div id="tour-panel">
+    <div id="tour-step-counter">12ର ପ୍ରଥମ ପର୍ଯ୍ଯ଼ାଯ଼</div>
+    <div id="tour-text"></div>
+    <div class="tour-buttons">
+        <button id="btn-tour-skip" class="btn-tour-secondary">ଶେଷ ଟ୍ଯ଼ୁଟୋରିଆଲ୍</button>
+        <button id="btn-tour-next" class="btn-tour-primary">ପରବର୍ତ୍ତୀ</button>
+    </div>
+</div>
+
+<script src="simulator.js?v=tour-i18n-20261004"></script>
+</body>
+</html>

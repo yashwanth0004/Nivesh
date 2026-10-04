@@ -1,5 +1,5 @@
 # Nivesh
-<<<<<<< HEAD
+HEAD
 Hackathon Project
 =======
 
